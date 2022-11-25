@@ -14,7 +14,7 @@ export const Header = () => {
       <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between mt-5 mb-10">
         <Link href="/">
           <button className={playfair.className}>
-            <h1 className="text-2xl md:text-3xl">Tickersaver</h1>
+            <h1 className="text-2xl md:text-3xl">tickersaver</h1>
           </button>
         </Link>
         <div className="flex items-center gap-10 md:gap-20">
