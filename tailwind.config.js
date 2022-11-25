@@ -6,7 +6,14 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        light: '#E6EAF0',
+      },
+    },
+    screens: {
+      md: '866px',
+    },
   },
   plugins: [],
 };
