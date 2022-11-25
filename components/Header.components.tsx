@@ -20,7 +20,7 @@ export const Header = () => {
         <div className="flex items-center gap-10 md:gap-20">
           <ThemeButton />
           <button>
-            <FiLogIn size={27} />
+            <FiLogIn size={26} />
           </button>
         </div>
       </div>
