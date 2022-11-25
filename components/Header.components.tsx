@@ -1,6 +1,7 @@
 import { Playfair_Display } from '@next/font/google';
 import { ThemeButton } from './ThemeButton.components';
 import { FiLogIn } from 'react-icons/fi';
+import Link from 'next/link';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -10,11 +11,13 @@ const playfair = Playfair_Display({
 export const Header = () => {
   return (
     <>
-      <div className="min-w-screen mx-auto px-5 md:max-w-[768px] flex justify-between mt-5 mb-10">
-        <button className={playfair.className}>
-          <h1 className="text-2xl md:text-3xl">Tickersaver</h1>
-        </button>
-        <div className="flex items-center gap-10">
+      <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between mt-5 mb-10">
+        <Link href="/">
+          <button className={playfair.className}>
+            <h1 className="text-2xl md:text-3xl">Tickersaver</h1>
+          </button>
+        </Link>
+        <div className="flex items-center gap-10 md:gap-20">
           <ThemeButton />
           <button>
             <FiLogIn size={27} />
