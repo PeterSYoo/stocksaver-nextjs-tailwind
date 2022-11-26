@@ -1,9 +1,9 @@
-import { Playfair_Display } from '@next/font/google';
-import { ThemeButton } from './ThemeButton.components';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { Playfair_Display } from '@next/font/google';
+import { ThemeButton } from './ThemeButton.components';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
