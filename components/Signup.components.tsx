@@ -9,6 +9,7 @@ import { BiUser } from 'react-icons/bi';
 import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
+import { useTheme } from 'next-themes';
 
 interface Values {
   username: String;
@@ -43,6 +44,9 @@ const SignupSchema = Yup.object().shape({
 
 export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { systemTheme, theme } = useTheme();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
   const router = useRouter();
 
   const handleSubmit = async () => {
@@ -283,15 +287,19 @@ export const Signup = () => {
                       href="/login"
                       className="text-black hover:text-gray-300 dark:text-white dark:hover:text-gray-800"
                     >
-                      Login
-                    </Link>{' '}
-                    here.
+                      Login here
+                    </Link>
+                    .
                   </p>
                 </div>
               </div>
               <div className="">
                 <Image
-                  src="https://i.imgur.com/46Ec3gL.png"
+                  src={
+                    currentTheme === 'dark'
+                      ? 'https://i.imgur.com/vvlGqvh.png'
+                      : 'https://i.imgur.com/POTg6mT.png'
+                  }
                   width={466}
                   height={686}
                   alt="hero desktop"
@@ -299,7 +307,11 @@ export const Signup = () => {
                 />
               </div>
               <Image
-                src="https://i.imgur.com/LDfAqQA.png"
+                src={
+                  currentTheme === 'dark'
+                    ? 'https://i.imgur.com/DKKQpJd.png'
+                    : 'https://i.imgur.com/bdSQeuZ.png'
+                }
                 width={327}
                 height={135}
                 alt="hero mobile"
