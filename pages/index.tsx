@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Header } from '../components/Header.components';
+import { getSession } from 'next-auth/react';
 import { Signup } from '../components/Signup.components';
 
 const Home = () => {
@@ -13,7 +13,6 @@ const Home = () => {
     <>
       {hydrated ? (
         <>
-          <Header />
           <Signup />
         </>
       ) : null}
@@ -22,3 +21,22 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async (context: any) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/dashboard',
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};
