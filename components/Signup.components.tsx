@@ -189,7 +189,7 @@ export const Signup = () => {
                       <RiLockPasswordLine />
                       <input
                         type={`${showPassword ? 'text' : 'password'}`}
-                        placeholder="********"
+                        placeholder="••••••••••"
                         className={
                           formik.errors.password
                             ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
@@ -235,7 +235,7 @@ export const Signup = () => {
                       <RiLockPasswordLine />
                       <input
                         type={`${showPassword ? 'text' : 'password'}`}
-                        placeholder="********"
+                        placeholder="••••••••••"
                         className={
                           formik.errors.cpassword
                             ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
