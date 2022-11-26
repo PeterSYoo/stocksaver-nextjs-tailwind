@@ -3,48 +3,42 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import usersConnect from '../../../database/usersConnect';
 import Users from '../../../models/Users';
 import { compare } from 'bcrypt';
-import { signIn } from 'next-auth/react';
 
-export default NextAuth({
+export const authOptions: any = {
   providers: [
     // @ts-ignore
     CredentialsProvider({
       name: 'Credentials',
-      async authorize(credentials: any, req: any) {
-        usersConnect().catch((error: any) => {
+      async authorize(credentials: any, req) {
+        usersConnect().catch((error) => {
           error: 'Connection Failed...!';
         });
 
-        // check user existence
+        // check user existance
         const result = await Users.findOne({ email: credentials?.email });
-
         if (!result) {
-          throw new Error('No user found with the email please sign up...!');
+          throw new Error('No user Found with Email Please Sign Up...!');
         }
 
-        // compare
+        // compare()
         const checkPassword = await compare(
-          credentials.password,
+          credentials?.password,
           result.password
         );
 
         // incorrect password
         if (!checkPassword || result.email !== credentials?.email) {
-          throw new Error(`Email or Password doesn't match`);
+          throw new Error("Username or Password doesn't match");
         }
 
         return result;
       },
     }),
   ],
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }: any) {
-      return true;
-    },
-    async session({ session, user }: any) {
-      session.id = user.id;
-      return session;
-    },
-  },
   secret: process.env.NEXT_PUBLIC_SECRET,
-});
+  session: {
+    strategy: 'jwt',
+  },
+};
+
+export default NextAuth(authOptions);
