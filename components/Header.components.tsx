@@ -3,7 +3,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Playfair_Display } from '@next/font/google';
 import { ThemeButton } from './ThemeButton.components';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { MdLogout } from 'react-icons/md';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -30,13 +30,16 @@ export const Header = () => {
         <div className="flex items-center gap-10 md:gap-20">
           <ThemeButton />
           {session ? (
-            <button onClick={handleSignout}>
-              <FiLogOut size={26} />
+            <button
+              onClick={handleSignout}
+              className="text-[24px] md:text-[30px] flex justify-center"
+            >
+              <MdLogout />
             </button>
           ) : (
             <Link href="/login">
-              <button>
-                <FiLogIn size={26} />
+              <button className="text-lg md:text-xl font-bold flex justify-center">
+                login
               </button>
             </Link>
           )}
