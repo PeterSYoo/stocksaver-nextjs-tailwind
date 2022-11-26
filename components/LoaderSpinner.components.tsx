@@ -17,7 +17,7 @@ export const LoaderSpinner = () => {
     return (
       <>
         <div className="min-w-screen min-h-screen mt-20 flex justify-center">
-          <MoonLoader color="#b8b8b8" size="30px" />
+          <MoonLoader color="#cccccc" size="30px" />
         </div>
       </>
     );
