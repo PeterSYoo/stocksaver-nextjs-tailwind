@@ -21,7 +21,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between mt-5 mb-10">
+      <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between mt-7 mb-10">
         <Link href="/">
           <button className={playfair.className}>
             <h1 className="text-2xl md:text-3xl">tickersaver</h1>
