@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
 
-const DB_URL: any = process.env.NEXT_PUBLIC_MONGO_URL_USERDB;
+const DB_URL: any = process.env.NEXT_PUBLIC_MONGODB_URL_USERDB;
 
 const usersConnect = async () => {
   try {
-    if (mongoose.connection.readyState >= 1) {
-      // if connection is open return the instance of the databse for cleaner queries
-      return mongoose.connection.db;
-    }
+    const { connection } = await mongoose.connect(DB_URL);
 
-    return mongoose.connect(DB_URL);
+    if (connection.readyState == 1) {
+      return Promise.resolve(true);
+    }
   } catch (error) {
     return Promise.reject(error);
   }
