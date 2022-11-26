@@ -126,7 +126,7 @@ export const Signup = () => {
                     <div className="text-center">
                       {formik.errors.username ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.username}&#39;
+                          {formik.errors.username}
                         </span>
                       ) : (
                         <></>
@@ -166,7 +166,7 @@ export const Signup = () => {
                     <div className="text-center">
                       {formik.errors.email ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.email}&#39;
+                          {formik.errors.email}
                         </span>
                       ) : (
                         <></>
@@ -212,7 +212,7 @@ export const Signup = () => {
                     <div className="text-center">
                       {formik.errors.password ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.password}&#39;
+                          {formik.errors.password}
                         </span>
                       ) : (
                         <></>
@@ -258,7 +258,7 @@ export const Signup = () => {
                     <div className="text-center">
                       {formik.errors.cpassword ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.cpassword}&#39;
+                          {formik.errors.cpassword}
                         </span>
                       ) : (
                         <></>

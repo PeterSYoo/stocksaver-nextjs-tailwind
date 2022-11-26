@@ -106,7 +106,7 @@ export const Login = () => {
                     <div className="text-center">
                       {formik.errors.email ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.email}&#39;
+                          {formik.errors.email}
                         </span>
                       ) : (
                         <></>
@@ -152,7 +152,7 @@ export const Login = () => {
                     <div className="text-center">
                       {formik.errors.password ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          &#39;{formik.errors.password}&#39;
+                          {formik.errors.password}
                         </span>
                       ) : (
                         <></>
