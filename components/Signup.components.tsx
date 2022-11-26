@@ -1,10 +1,13 @@
-import { useFormik } from 'formik';
-import Image from 'next/image';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { BiUser } from 'react-icons/bi';
 import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import * as Yup from 'yup';
+import { HiFingerPrint } from 'react-icons/hi';
 
 interface Values {
   username: String;
@@ -38,6 +41,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const onSubmit = async (values: Values) => {
@@ -51,7 +55,7 @@ export const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          router.push(process.env.NEXT_PUBLIC_APP_URL!);
+          router.push('/login');
         }
       });
   };
@@ -177,7 +181,7 @@ export const Signup = () => {
                     >
                       <RiLockPasswordLine />
                       <input
-                        type="password"
+                        type={`${showPassword ? 'text' : 'password'}`}
                         placeholder="********"
                         className={
                           formik.errors.password
@@ -187,6 +191,12 @@ export const Signup = () => {
                         {...formik.getFieldProps('password')}
                         name="password"
                       />
+                      <span
+                        className="icon flex items-center px-4 cursor-pointer"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        <HiFingerPrint />
+                      </span>
                     </div>
                     <div className="text-center">
                       {formik.errors.password ? (
@@ -217,7 +227,7 @@ export const Signup = () => {
                     >
                       <RiLockPasswordLine />
                       <input
-                        type="password"
+                        type={`${showPassword ? 'text' : 'password'}`}
                         placeholder="********"
                         className={
                           formik.errors.cpassword
@@ -227,6 +237,12 @@ export const Signup = () => {
                         {...formik.getFieldProps('cpassword')}
                         name="cpassword"
                       />
+                      <span
+                        className="icon flex items-center px-4 cursor-pointer"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        <HiFingerPrint />
+                      </span>
                     </div>
                     <div className="text-center">
                       {formik.errors.cpassword ? (
@@ -254,7 +270,14 @@ export const Signup = () => {
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
-                    Already have an account? Login here.
+                    Already have an account?{' '}
+                    <Link
+                      href="/login"
+                      className="text-black hover:text-gray-300 dark:text-white dark:hover:text-gray-800"
+                    >
+                      Login
+                    </Link>{' '}
+                    here.
                   </p>
                 </div>
               </div>
