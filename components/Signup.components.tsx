@@ -81,7 +81,7 @@ export const Signup = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <div className="md:mx-10">
+        <div className="md:mx-10 mt-24 md:mt-20">
           <div className="max-w-[327px] md:max-w-[937px] animate-border rounded-3xl from-purple-500 via-teal-500 to-blue-500 bg-[length:400%_400%] p-0.5 dark:bg-black dark:bg-gradient-to-r mx-auto">
             <div className="bg-white pt-4 md:pt-0 rounded-3xl shadow-md shadow-gray-500 md:grid md:grid-cols-2 dark:shadow-none dark:bg-[#0f121a]">
               <div className="mt-4 md:mt-10">
