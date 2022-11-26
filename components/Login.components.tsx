@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { MdAlternateEmail } from 'react-icons/md';
@@ -31,15 +32,21 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (values: Values) => {
+  const handleSubmit = async () => {
     const status: any = await signIn('credentials', {
       redirect: false,
-      email: values.email,
-      password: values.password,
+      email: formik.values.email,
+      password: formik.values.password,
       callbackUrl: '/dashboard',
     });
 
     if (status.ok) router.push(status.url);
+  };
+
+  const { mutateAsync, isLoading } = useMutation(handleSubmit);
+
+  const onSubmit = async (values: any) => {
+    await mutateAsync(values);
   };
 
   const formik = useFormik({
@@ -155,9 +162,10 @@ export const Login = () => {
                   ) : (
                     <button
                       type="submit"
+                      disabled={isLoading ? true : false}
                       className="bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f121a] hover:bg-black"
                     >
-                      Login
+                      {isLoading ? <>Loading..</> : <>Login</>}
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { BiUser } from 'react-icons/bi';
@@ -44,11 +45,11 @@ export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (values: Values) => {
+  const handleSubmit = async () => {
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
+      body: JSON.stringify(formik.values),
     };
 
     await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/signup`, options)
@@ -58,6 +59,12 @@ export const Signup = () => {
           router.push('/login');
         }
       });
+  };
+
+  const { mutateAsync, isLoading } = useMutation(handleSubmit);
+
+  const onSubmit = async (values: any) => {
+    await mutateAsync(values);
   };
 
   const formik = useFormik({
@@ -79,7 +86,7 @@ export const Signup = () => {
             <div className="bg-white pt-4 md:pt-0 rounded-3xl shadow-md shadow-gray-500 md:grid md:grid-cols-2 dark:shadow-none dark:bg-[#0f121a]">
               <div className="mt-4 md:mt-10">
                 <h1 className="text-2xl font-bold text-center md:text-3xl">
-                  Sign-Up!
+                  Sign-Up
                 </h1>
                 <div className="px-10">
                   <label>
@@ -264,9 +271,10 @@ export const Signup = () => {
                   ) : (
                     <button
                       type="submit"
+                      disabled={isLoading ? true : false}
                       className="bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f121a] hover:bg-black"
                     >
-                      Sign-Up
+                      {isLoading ? <>Loading..</> : <>Sign-Up</>}
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
