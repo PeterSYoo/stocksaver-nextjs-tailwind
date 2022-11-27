@@ -21,28 +21,30 @@ export const Header = () => {
 
   return (
     <>
-      <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between mt-7 mb-10">
-        <Link href="/">
-          <button className={playfair.className}>
-            <h1 className="text-2xl md:text-3xl">tickersaver</h1>
-          </button>
-        </Link>
-        <div className="flex items-center gap-10 md:gap-20">
-          <ThemeButton />
-          {session ? (
-            <button
-              onClick={handleSignout}
-              className="text-[24px] md:text-[30px] flex justify-center"
-            >
-              <MdLogout />
+      <div className="bg-white shadow shadow-gray-500 dark:bg-[#0F121A] dark:shadow-none">
+        <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between pt-7 md:mb-10 pb-2">
+          <Link href="/">
+            <button className={playfair.className}>
+              <h1 className="text-2xl md:text-3xl">tickersaver</h1>
             </button>
-          ) : (
-            <Link href="/login">
-              <button className="text-lg md:text-xl font-bold flex justify-center">
-                login
+          </Link>
+          <div className="flex items-center gap-10 md:gap-20">
+            <ThemeButton />
+            {session ? (
+              <button
+                onClick={handleSignout}
+                className="text-[24px] md:text-[30px] flex justify-center"
+              >
+                <MdLogout />
               </button>
-            </Link>
-          )}
+            ) : (
+              <Link href="/login">
+                <button className="text-lg md:text-xl font-bold flex justify-center">
+                  login
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>
