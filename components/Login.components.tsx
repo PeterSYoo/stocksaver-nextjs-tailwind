@@ -167,7 +167,11 @@ export const Login = () => {
                     <button
                       type="submit"
                       disabled={isLoading ? true : false}
-                      className="bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f121a] hover:bg-black"
+                      className={
+                        isLoading
+                          ? 'bg-gray-400 dark:bg-gray-700 w-full mt-10 text-gray-200 dark:text-gray-500 font-bold text-xl py-2 rounded-3xl flex justify-center cursor-default'
+                          : 'bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f1117] hover:bg-black'
+                      }
                     >
                       {isLoading ? <>Loading..</> : <>Login</>}
                     </button>
