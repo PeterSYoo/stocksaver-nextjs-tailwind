@@ -10,7 +10,7 @@ const playfair = Playfair_Display({
 export const Profile = () => {
   return (
     <>
-      <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-5 py-4 grid grid-cols-2 md:grid-cols-12">
+      <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-5 py-4 grid grid-cols-2 md:grid-cols-12 dark:shadow-none dark:bg-dark">
         <div className="flex flex-col items-center justify-center md:col-start-1 md:col-span-2">
           <Image
             src="https://i.imgur.com/1WUaIla.png"

@@ -4,7 +4,7 @@ export const TickerCard = () => {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <div className="bg-[#F1F6FA] flex flex-col justify-between rounded-3xl shadow-md shadow-gray-500 px-3 py-4 h-36">
+        <div className="bg-[#F1F6FA] flex flex-col justify-between rounded-3xl shadow-md shadow-gray-500 px-3 py-4 h-36 dark:shadow-none dark:bg-black">
           <div className="flex justify-between">
             <div className="flex flex-col">
               <span className="font-bold text-sm">AAPL</span>
@@ -22,8 +22,8 @@ export const TickerCard = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-end mr-1">
-          <button className="text-2xl text-red-600 hover:text-black">
+        <div className="flex justify-center">
+          <button className="text-2xl text-red-600 hover:text-black dark:hover:text-white dark:bg-black dark:aspect-square p-[2px] rounded-xl bg-[#F1F6FA] shadow shadow-gray-500 dark:shadow-none">
             <TiDelete />
           </button>
         </div>
