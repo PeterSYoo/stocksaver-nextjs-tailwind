@@ -11,8 +11,8 @@ import {
   QueryClient,
   Hydrate,
 } from '@tanstack/react-query';
-import { Header } from '../components/Header.components';
 import { LoaderSpinner } from '../components/LoaderSpinner.components';
+import HeaderPage from './header';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     font-family: ${openSans.style.fontFamily};
                   }
                 `}</style>
-                <Header />
+                <HeaderPage />
                 <Component {...pageProps} />
               </ThemeProvider>
             </Hydrate>
