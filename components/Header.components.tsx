@@ -70,7 +70,13 @@ const LoggedIn = () => {
 export const Header = () => {
   const { data: session, status }: any = useSession();
 
-  if (status === 'loading') return <LoaderSpinner />;
+  if (status === 'loading') {
+    return (
+      <div className="pl-4">
+        <LoaderSpinner />;
+      </div>
+    );
+  }
   if (status === 'unauthenticated') return <Guest />;
 
   return <LoggedIn />;
