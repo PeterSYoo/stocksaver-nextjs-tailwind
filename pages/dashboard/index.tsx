@@ -7,11 +7,15 @@ import { WinnersLosers } from '../../components/dashboard/WinnersLosers.componen
 const DashboardPage = () => {
   return (
     <>
-      <div className="flex flex-col mx-4 gap-6 mt-4 mb-36">
-        <div className="mx-4 text-sm">Dashboard</div>
-        <Profile />
-        <WinnersLosers />
-        <TickerCards />
+      <div className="mx-4 md:mx-10">
+        <div className="flex flex-col md:max-w-[1024px] gap-6 mt-4 mb-36 mx-auto">
+          <div className="mx-4 text-sm">Dashboard</div>
+          <Profile />
+          <div className="md:hidden">
+            <WinnersLosers />
+          </div>
+          <TickerCards />
+        </div>
       </div>
     </>
   );
