@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Playfair_Display } from '@next/font/google';
 import { MdLogout } from 'react-icons/md';
 import { ThemeButton } from './ThemeButton.components';
-import { useEffect, useState } from 'react';
+import { LoaderSpinner } from './LoaderSpinner.components';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -70,11 +70,8 @@ const LoggedIn = () => {
 export const Header = () => {
   const { data: session, status }: any = useSession();
 
-  if (status === 'loading') return null;
-
-  if (status === 'unauthenticated') {
-    return <Guest />;
-  }
+  if (status === 'loading') return <LoaderSpinner />;
+  if (status === 'unauthenticated') return <Guest />;
 
   return <LoggedIn />;
 };
