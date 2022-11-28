@@ -12,7 +12,7 @@ import {
   Hydrate,
 } from '@tanstack/react-query';
 import { LoaderSpinner } from '../components/LoaderSpinner.components';
-import HeaderPage from './header';
+import { Header } from '../components/Header.components';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     font-family: ${openSans.style.fontFamily};
                   }
                 `}</style>
-                <HeaderPage />
+                <Header />
                 <Component {...pageProps} />
               </ThemeProvider>
             </Hydrate>
