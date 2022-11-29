@@ -6,13 +6,13 @@ export const Item = () => {
       <div className="grid grid-cols-12 gap-3">
         <div className="col-start-1 col-span-6">
           <div className="flex flex-col md:flex-row md:items-center md:gap-20">
-            <span className="text-2xl font-bold">AAPL</span>
+            <span className="text-xl font-bold">AAPL</span>
             <span className="text-xs md:text-lg">Apple Inc</span>
           </div>
         </div>
         <div className="col-start-7 col-span-3">
           <div className="flex flex-col items-center md:flex-row md:items-center md:gap-36">
-            <span className="text-2xl font-bold">$145</span>
+            <span className="text-xl font-bold">$145</span>
             <span className="text-xs md:text-lg">+0.456</span>
           </div>
         </div>
