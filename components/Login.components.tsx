@@ -45,6 +45,7 @@ export const Login = () => {
     });
 
     if (status.ok) router.push(status.url);
+    if (status.error) alert('Wrong email or password, please try again.');
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
