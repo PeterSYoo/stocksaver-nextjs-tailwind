@@ -20,7 +20,7 @@ export const authOptions: any = {
           throw new Error('No user Found with Email Please Sign Up...!');
         }
 
-        // compare()
+        // compare
         const checkPassword = await compare(
           credentials?.password,
           result.password
@@ -28,13 +28,32 @@ export const authOptions: any = {
 
         // incorrect password
         if (!checkPassword || result.email !== credentials?.email) {
-          throw new Error("Username or Password doesn't match");
+          throw new Error(
+            JSON.stringify({ errors: result.errors, status: false })
+          );
         }
 
         return result;
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }: any) {
+      return true;
+    },
+    async session({ session, token }: any) {
+      if (session?.user) {
+        session.user.id = token.uid;
+      }
+      return session;
+    },
+    async jwt({ user, token }: any) {
+      if (user) {
+        token.uid = user.id;
+      }
+      return token;
+    },
+  },
   secret: process.env.NEXT_PUBLIC_SECRET,
   session: {
     strategy: 'jwt',
