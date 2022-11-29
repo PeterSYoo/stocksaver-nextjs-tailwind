@@ -73,7 +73,7 @@ export const Header = () => {
   if (status === 'loading') {
     return (
       <div className="pl-4">
-        <LoaderSpinner />;
+        <LoaderSpinner />
       </div>
     );
   }
