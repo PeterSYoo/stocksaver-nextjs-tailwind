@@ -10,6 +10,7 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
 import { useTheme } from 'next-themes';
+import { LoaderSpinner2 } from './LoaderSpinner2.components';
 
 interface Values {
   username: String;
@@ -278,11 +279,11 @@ export const Signup = () => {
                       disabled={isLoading ? true : false}
                       className={
                         isLoading
-                          ? 'bg-gray-400 dark:bg-gray-700 w-full mt-10 text-gray-200 dark:text-gray-500 font-bold text-xl py-2 rounded-3xl flex justify-center cursor-default'
+                          ? 'bg-white dark:bg-dark w-full mt-10 text-gray-200 dark:text-gray-500 font-bold text-xl py-2 rounded-3xl flex justify-center cursor-default'
                           : 'bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f121a] hover:bg-black'
                       }
                     >
-                      {isLoading ? <>Loading..</> : <>Sign-Up</>}
+                      {isLoading ? <LoaderSpinner2 /> : <>Sign-Up</>}
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
