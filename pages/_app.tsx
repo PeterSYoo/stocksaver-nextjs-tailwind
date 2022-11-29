@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Tickersaver - Save your tickers!</title>
+        <title>tickersaver - Save your tickers!</title>
       </Head>
       {loading ? (
         <LoaderSpinner />
