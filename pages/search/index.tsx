@@ -8,11 +8,17 @@ const SearchPage = () => {
       <div className="mx-4 md:mx-10">
         <div className="flex flex-col md:max-w-[1024px] gap-6 mt-4 mb-36 mx-auto">
           <div className="mx-4 text-sm text-gray-600">
-            <Link href="/dashboard" className="hover:text-white">
+            <Link
+              href="/dashboard"
+              className="dark:hover:text-white hover:text-black"
+            >
               dashboard
             </Link>{' '}
             &#62;{' '}
-            <Link href="/search" className="hover:text-white">
+            <Link
+              href="/search"
+              className="dark:hover:text-white hover:text-black"
+            >
               search
             </Link>
           </div>
