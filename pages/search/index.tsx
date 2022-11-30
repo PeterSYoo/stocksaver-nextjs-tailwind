@@ -13,8 +13,9 @@ const SearchPage = () => {
               className="dark:hover:text-white hover:text-black"
             >
               dashboard
-            </Link>{' '}
-            &#62;{' '}
+            </Link>
+            &nbsp;&nbsp;
+            <span className="text-[11px]">&#62;</span>&nbsp;&nbsp;
             <Link
               href="/search"
               className="dark:hover:text-white hover:text-black"
