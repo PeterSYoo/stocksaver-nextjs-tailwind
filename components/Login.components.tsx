@@ -125,31 +125,35 @@ export const Login = () => {
                     >
                       Password:
                     </h3>
-                    <div
-                      className={
-                        formik.errors.password
-                          ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600'
-                          : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white'
-                      }
-                    >
-                      <RiLockPasswordLine />
-                      <input
-                        type={`${showPassword ? 'text' : 'password'}`}
-                        placeholder="••••••••••"
+                    <div className="grid grid-cols-12 h-full">
+                      <div
                         className={
                           formik.errors.password
-                            ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
-                            : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                            ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-l-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600 col-start-1 md:col-span-10'
+                            : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-l-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white col-start-1 md:col-span-10'
                         }
-                        {...formik.getFieldProps('password')}
-                        name="password"
-                      />
-                      <span
-                        className="icon flex items-center px-4 cursor-pointer"
-                        onClick={() => setShowPassword(!showPassword)}
                       >
-                        <HiFingerPrint />
-                      </span>
+                        <RiLockPasswordLine />
+                        <input
+                          type={`${showPassword ? 'text' : 'password'}`}
+                          placeholder="••••••••••"
+                          className={
+                            formik.errors.password
+                              ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
+                              : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                          }
+                          {...formik.getFieldProps('password')}
+                          name="password"
+                        />
+                      </div>
+                      <div className="md:col-start-11 col-span-2 border border-gray-400 rounded-r-md border-l-0 dark:border-gray-700">
+                        <span
+                          className="icon flex items-center justify-center h-full px-4 cursor-pointer text-gray-400 hover:text-black dark:text-gray-700 dark:hover:text-white"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <HiFingerPrint />
+                        </span>
+                      </div>
                     </div>
                     <div className="text-center">
                       {formik.errors.password ? (
