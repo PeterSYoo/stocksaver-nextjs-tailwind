@@ -87,8 +87,8 @@ export const SearchInput = () => {
                 <AiOutlineSearch
                   className={
                     formik.errors.search
-                      ? 'text-2xl text-red-600 dark:text-red-500'
-                      : 'text-2xl text-gray-600 dark:text-gray-400'
+                      ? 'text-2xl text-red-600 dark:text-red-500 ml-2'
+                      : 'text-2xl text-gray-600 dark:text-gray-400 ml-2'
                   }
                 />
               ) : null}
@@ -145,7 +145,7 @@ export const SearchInput = () => {
             </div>
           </div>
           {formik.errors.search ? (
-            <span className="text-[10px] text-red-500 md:text-[12px] ml-10">
+            <span className="text-[10px] text-red-500 md:text-[12px] ml-12">
               {formik.errors.search}
             </span>
           ) : null}
