@@ -41,7 +41,7 @@ export const SearchResults = ({ results }: Results) => {
                     <span className="text-xs md:text-sm">{result.name}</span>
                   </div>
                 </div>
-                <div className="col-start-7 col-span-4 md:grid md:grid-cols-2">
+                <div className="col-start-7 col-span-4 md:grid md:grid-cols-2 flex flex-col items-end">
                   <div>
                     <span className="text-xl font-bold">${result.price}</span>
                   </div>
