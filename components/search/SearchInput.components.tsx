@@ -84,7 +84,13 @@ export const SearchInput = () => {
               }
             >
               {formik.values.search ? (
-                <AiOutlineSearch className="text-2xl text-gray-600 dark:text-gray-400 " />
+                <AiOutlineSearch
+                  className={
+                    formik.errors.search
+                      ? 'text-2xl text-red-600 dark:text-red-500'
+                      : 'text-2xl text-gray-600 dark:text-gray-400'
+                  }
+                />
               ) : null}
               <input
                 type="text"
