@@ -18,8 +18,7 @@ const SearchSchema = Yup.object().shape({
     .matches(
       /^[0-9a-zA-Z]*,*[0-9a-zA-Z]*,*[0-9a-zA-Z]+$/,
       'max 3 tickers, no trailing commas, special characters, white spaces allowed.'
-    )
-    .required(' '),
+    ),
 });
 
 export const SearchInput = () => {
@@ -83,11 +82,11 @@ export const SearchInput = () => {
               }
             >
               {formik.values.search ? (
-                <AiOutlineSearch className="text-2xl" />
+                <AiOutlineSearch className="text-2xl text-gray-600 dark:text-gray-400 " />
               ) : null}
               <input
                 type="text"
-                placeholder="AAPL,MSFT,GOOGL"
+                placeholder="search tickers..."
                 className={
                   formik.errors.search
                     ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
@@ -105,7 +104,7 @@ export const SearchInput = () => {
                     className={
                       formik.errors.search
                         ? 'text-2xl text-red-400 hover:text-red-500 dark:text-red-500 dark:hover:text-red-600'
-                        : 'text-2xl text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white'
+                        : 'text-2xl text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white'
                     }
                   />
                 </span>
@@ -121,8 +120,12 @@ export const SearchInput = () => {
                 </button>
               ) : (
                 <button
-                  disabled={isLoading ? true : false}
-                  className="flex items-center h-full text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white"
+                  disabled={isLoading || !formik.values.search ? true : false}
+                  className={
+                    !formik.values.search
+                      ? 'flex items-center h-full text-gray-400 dark:text-gray-500 opacity-25'
+                      : 'flex items-center h-full text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                  }
                 >
                   {isLoading ? (
                     <LoaderSpinnerSearch />
