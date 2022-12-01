@@ -1,8 +1,12 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import usersConnect from '../../../database/usersConnect';
 import Users from '../../../models/Users';
 import { hash } from 'bcrypt';
 
-export default async function handler(req: any, res: any) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   usersConnect().catch((error) => res.json({ error: 'Connection Failed...!' }));
 
   // only post method is accepted
