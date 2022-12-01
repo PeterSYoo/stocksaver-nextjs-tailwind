@@ -88,7 +88,7 @@ export const Signup = () => {
       <form onSubmit={formik.handleSubmit}>
         <div className="md:mx-10 mt-12 mb-24">
           <div className="max-w-[327px] md:max-w-[937px] animate-border rounded-3xl from-purple-500 via-teal-500 to-blue-500 bg-[length:400%_400%] p-0.5 dark:bg-black dark:bg-gradient-to-r mx-auto">
-            <div className="bg-white pt-4 md:pt-0 rounded-3xl shadow-md shadow-gray-500 md:grid md:grid-cols-2 dark:shadow-none dark:bg-[#0f121a]">
+            <div className="bg-white pt-4 md:pt-0 rounded-3xl shadow-md shadow-gray-500 md:grid md:grid-cols-2 dark:shadow-none dark:bg-dark">
               <div className="mt-4 md:mt-10">
                 <h1 className="text-2xl font-bold text-center md:text-3xl">
                   Sign-Up
@@ -108,7 +108,7 @@ export const Signup = () => {
                       className={
                         formik.errors.username
                           ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600'
-                          : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white'
+                          : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white'
                       }
                     >
                       <BiUser />
@@ -117,8 +117,8 @@ export const Signup = () => {
                         placeholder="username"
                         className={
                           formik.errors.username
-                            ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
-                            : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                            ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
+                            : 'w-full px-2 focus:outline-none text-black dark:bg-dark dark:text-white dark:placeholder:text-gray-700'
                         }
                         {...formik.getFieldProps('username')}
                         name="username"
@@ -148,7 +148,7 @@ export const Signup = () => {
                       className={
                         formik.errors.email
                           ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600'
-                          : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white'
+                          : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white'
                       }
                     >
                       <MdAlternateEmail />
@@ -157,8 +157,8 @@ export const Signup = () => {
                         placeholder="user@email.com"
                         className={
                           formik.errors.email
-                            ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
-                            : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                            ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
+                            : 'w-full px-2 focus:outline-none text-black dark:bg-dark dark:text-white dark:placeholder:text-gray-700'
                         }
                         {...formik.getFieldProps('email')}
                         name="email"
@@ -188,8 +188,8 @@ export const Signup = () => {
                       <div
                         className={
                           formik.errors.password
-                            ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-l-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600 col-start-1 md:col-span-10'
-                            : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-l-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white col-start-1 md:col-span-10'
+                            ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-l-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600 col-start-1 md:col-span-10 col-span-9'
+                            : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-l-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white col-start-1 md:col-span-10 col-span-9'
                         }
                       >
                         <RiLockPasswordLine />
@@ -198,14 +198,14 @@ export const Signup = () => {
                           placeholder="••••••••••"
                           className={
                             formik.errors.password
-                              ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
-                              : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                              ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
+                              : 'w-full px-2 focus:outline-none text-black dark:bg-dark dark:text-white dark:placeholder:text-gray-700'
                           }
                           {...formik.getFieldProps('password')}
                           name="password"
                         />
                       </div>
-                      <div className="md:col-start-11 col-span-2 border border-gray-400 rounded-r-md border-l-0 dark:border-gray-700">
+                      <div className="col-start-10 md:col-start-11 md:col-span-2 col-span-3 border border-gray-400 rounded-r-md border-l-0 dark:border-gray-700">
                         <span
                           className="icon flex items-center justify-center h-full px-4 cursor-pointer text-gray-400 hover:text-black dark:text-gray-700 dark:hover:text-white"
                           onClick={() => setShowPassword(!showPassword)}
@@ -238,8 +238,8 @@ export const Signup = () => {
                       <div
                         className={
                           formik.errors.cpassword
-                            ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-l-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600 col-start-1 md:col-span-10'
-                            : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-l-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-white dark:hover:text-white col-start-1 md:col-span-10'
+                            ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-l-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600 col-start-1 md:col-span-10 col-span-9'
+                            : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-l-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white col-start-1 md:col-span-10 col-span-9'
                         }
                       >
                         <RiLockPasswordLine />
@@ -248,14 +248,14 @@ export const Signup = () => {
                           placeholder="••••••••••"
                           className={
                             formik.errors.cpassword
-                              ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-[#0f121a] placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
-                              : 'w-full px-2 focus:outline-none text-black dark:bg-[#0f121a] dark:text-white dark:placeholder:text-gray-700'
+                              ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
+                              : 'w-full px-2 focus:outline-none text-black dark:bg-dark dark:text-white dark:placeholder:text-gray-700'
                           }
                           {...formik.getFieldProps('cpassword')}
                           name="cpassword"
                         />
                       </div>
-                      <div className="md:col-start-11 col-span-2 border border-gray-400 rounded-r-md border-l-0 dark:border-gray-700">
+                      <div className="col-start-10 md:col-start-11 md:col-span-2 col-span-3 border border-gray-400 rounded-r-md border-l-0 dark:border-gray-700">
                         <span
                           className="icon flex items-center justify-center h-full px-4 cursor-pointer text-gray-400 hover:text-black dark:text-gray-700 dark:hover:text-white"
                           onClick={() => setShowPassword(!showPassword)}
@@ -308,11 +308,7 @@ export const Signup = () => {
               </div>
               <div className="">
                 <Image
-                  src={
-                    currentTheme === 'dark'
-                      ? 'https://i.imgur.com/vvlGqvh.png'
-                      : 'https://i.imgur.com/POTg6mT.png'
-                  }
+                  src="https://i.imgur.com/KqMSQKH.png"
                   width={466}
                   height={686}
                   alt="hero desktop"
@@ -320,11 +316,7 @@ export const Signup = () => {
                 />
               </div>
               <Image
-                src={
-                  currentTheme === 'dark'
-                    ? 'https://i.imgur.com/DKKQpJd.png'
-                    : 'https://i.imgur.com/bdSQeuZ.png'
-                }
+                src="https://i.imgur.com/DKKQpJd.png"
                 width={327}
                 height={135}
                 alt="hero mobile"
