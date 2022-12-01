@@ -18,7 +18,7 @@ module.exports = {
       },
       colors: {
         light: '#E6EAF0',
-        dark: '#0F121A',
+        dark: '#1c202b',
       },
     },
     screens: {
