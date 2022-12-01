@@ -3,6 +3,7 @@ import { IoIosAddCircleOutline } from 'react-icons/io';
 
 interface Results {
   results: any;
+  error: any;
 }
 
 interface Result {
@@ -12,7 +13,7 @@ interface Result {
   name: string;
 }
 
-export const SearchResults = ({ results }: Results) => {
+export const SearchResults = ({ results, error }: Results) => {
   const dayChange = (result: Result) => {
     let pos = result.price - result.day_open;
     let neg = result.day_open - result.price;
@@ -28,6 +29,13 @@ export const SearchResults = ({ results }: Results) => {
 
   return (
     <>
+      {error.returned === 0 ? (
+        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-10 dark:shadow-none dark:bg-dark flex flex-col gap-3">
+          <h1 className="text-center">
+            No tickers found, make sure you typed in the right symbol.
+          </h1>
+        </div>
+      ) : null}
       {results.length !== 0 ? (
         <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 pt-6 pb-10 dark:shadow-none dark:bg-dark flex flex-col gap-3">
           {results.map((result: Result) => (
