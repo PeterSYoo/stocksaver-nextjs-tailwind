@@ -145,9 +145,11 @@ export const SearchInput = () => {
             </div>
           </div>
           {formik.errors.search ? (
-            <span className="text-[10px] text-red-500 md:text-[12px] ml-12">
-              {formik.errors.search}
-            </span>
+            <div className="w-3/4 ml-11 md:ml-12">
+              <span className="text-[10px] text-red-500 md:text-[12px]">
+                {formik.errors.search}
+              </span>
+            </div>
           ) : null}
         </div>
       </form>
