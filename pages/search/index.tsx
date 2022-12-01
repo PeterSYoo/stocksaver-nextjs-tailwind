@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { SearchInput } from '../../components/search/SearchInput.components';
-import { SearchList } from '../../components/search/SearchList.components';
 
 const SearchPage = () => {
   return (
@@ -24,7 +23,6 @@ const SearchPage = () => {
             </Link>
           </div>
           <SearchInput />
-          <SearchList />
         </div>
       </div>
     </>
