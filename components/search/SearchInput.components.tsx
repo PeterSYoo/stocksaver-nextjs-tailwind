@@ -17,7 +17,7 @@ const SearchSchema = Yup.object().shape({
     .max(25, 'too long!')
     .matches(
       /^[0-9a-zA-Z]*,*[0-9a-zA-Z]*,*[0-9a-zA-Z]+$/,
-      'max 3 tickers, no trailing commas, special characters, white spaces allowed.'
+      'max 3 tickers, no trailing commas, no special characters, and no white spaces allowed.'
     ),
 });
 
