@@ -23,6 +23,7 @@ const SearchSchema = Yup.object().shape({
 
 export const SearchInput = () => {
   const [result, setResult] = useState([]);
+  const [error, setError] = useState({});
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
 
   const handleSubmit = async () => {
@@ -36,6 +37,7 @@ export const SearchInput = () => {
       if (json) {
         console.log(json);
         setResult(json.data);
+        setError(json.meta);
       }
 
       return {};
@@ -143,7 +145,7 @@ export const SearchInput = () => {
           ) : null}
         </div>
       </form>
-      <SearchResults results={result} />
+      <SearchResults results={result} error={error} />
     </>
   );
 };
