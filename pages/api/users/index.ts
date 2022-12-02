@@ -7,7 +7,7 @@ export default async function usersApi(
   res: NextApiResponse
 ) {
   usersConnect().catch(() => {
-    res.status(405).json({ error: 'Error in connecting to users databse' });
+    res.status(405).json({ error: 'Error in connecting to users database' });
   });
 
   const { method } = req;

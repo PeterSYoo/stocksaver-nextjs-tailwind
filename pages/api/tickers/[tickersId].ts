@@ -1,8 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import usersConnect from '../../../database/usersConnect';
-import { getUser, putUser } from '../../../lib/usersController';
+import {
+  createTickers,
+  deleteTickers,
+  getTicker,
+} from '../../../lib/tickersController';
 
-export default async function usersIdApi(
+export default async function tickersIdApi(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -14,13 +18,16 @@ export default async function usersIdApi(
 
   switch (method) {
     case 'GET':
-      getUser(req, res);
+      getTicker(req, res);
       break;
-    case 'PUT':
-      putUser(req, res);
+    case 'POST':
+      createTickers(req, res);
+      break;
+    case 'DELETE':
+      deleteTickers(req, res);
       break;
     default:
-      res.setHeader('Allow', ['GET', 'PUT']);
+      res.setHeader('Allow', ['GET', 'POST', 'DELETE']);
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }

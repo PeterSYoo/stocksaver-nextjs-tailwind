@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import usersConnect from '../../../database/usersConnect';
-import { getUser, putUser } from '../../../lib/usersController';
 
-export default async function usersIdApi(
+export default async function findTickersApi(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -14,13 +13,9 @@ export default async function usersIdApi(
 
   switch (method) {
     case 'GET':
-      getUser(req, res);
-      break;
-    case 'PUT':
-      putUser(req, res);
       break;
     default:
-      res.setHeader('Allow', ['GET', 'PUT']);
+      res.setHeader('Allow', ['GET']);
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
