@@ -1,6 +1,6 @@
 const APP_URL: any = process.env.NEXT_PUBLIC_APP_URL;
 
-export const getUser = async (userId: any) => {
+export const getUser = async (userId: string) => {
   const response = await fetch(`${APP_URL}/api/users/${userId}`);
   const json = await response.json();
 
@@ -9,7 +9,7 @@ export const getUser = async (userId: any) => {
   return {};
 };
 
-export const updateUser = async (userId: any, formData: any) => {
+export const updateUser = async (userId: string, formData: string) => {
   try {
     const Options = {
       method: 'PUT',
