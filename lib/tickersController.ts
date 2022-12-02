@@ -66,10 +66,10 @@ export const deleteTickers = async (
   res: NextApiResponse
 ) => {
   try {
-    const { tickersId } = req.query;
+    const { tickersId }: any = req.query;
 
     if (tickersId) {
-      const tickers = await Tickers.findByIdAndDelete(tickersId);
+      const tickers = await Tickers.findOneAndDelete({ tickers: tickersId });
       res.status(200).json(tickers);
     }
   } catch (error) {
