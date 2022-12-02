@@ -71,7 +71,7 @@ export const TickerCard = ({ ticker, name, price, prevClose }: Result) => {
               <span className="font-bold text-sm">{ticker}</span>
               <span className="text-xs">{name}</span>
             </div>
-            <div className="text-sm font-bold">{price}</div>
+            <div className="text-sm font-bold">${price}</div>
           </div>
           <div className="flex justify-between">
             <div className="flex items-end text-xs">Daily</div>
