@@ -16,7 +16,7 @@ export const LoaderSpinner = () => {
   if (currentTheme === 'dark') {
     return (
       <>
-        <div className="fixed left-1/2 -translate-x-1/2 top-1/4 -translate-y-1/4">
+        <div className="fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
           <MoonLoader color="#cccccc" size="30px" />
         </div>
       </>
@@ -24,7 +24,7 @@ export const LoaderSpinner = () => {
   } else {
     return (
       <>
-        <div className="fixed left-1/2 -translate-x-1/2 top-1/4 -translate-y-1/4">
+        <div className="fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
           <MoonLoader color="#545454" size="30px" />
         </div>
       </>
