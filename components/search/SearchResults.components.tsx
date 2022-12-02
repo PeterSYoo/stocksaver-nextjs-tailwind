@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 
 interface Results {
@@ -8,21 +8,21 @@ interface Results {
 
 interface Result {
   price: number;
-  day_open: number;
+  previous_close_price: number;
   ticker: string;
   name: string;
 }
 
 export const SearchResults = ({ results, error }: Results) => {
   const dayChange = (result: Result) => {
-    let pos = result.price - result.day_open;
-    let neg = result.day_open - result.price;
+    let pos = result.price - result.previous_close_price;
+    let neg = result.previous_close_price - result.price;
     let posString = pos.toString().substring(0, 7);
     let negString = neg.toString().substring(0, 7);
 
-    if (result.day_open > result.price) {
+    if (result.previous_close_price > result.price) {
       return <span className="text-red-500">{`-${negString}`}</span>;
-    } else if (result.price > result.day_open) {
+    } else if (result.price > result.previous_close_price) {
       return <span className="text-green-600">{`+${posString}`}</span>;
     }
   };
