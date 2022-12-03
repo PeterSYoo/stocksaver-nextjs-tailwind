@@ -17,8 +17,12 @@ module.exports = {
         },
       },
       colors: {
-        light: '#E6EAF0',
-        dark: '#1c202b',
+        light: '#F3F3F3',
+        dark: '#1e2124',
+      },
+      boxShadow: {
+        dark3xl: '3px 3px 0px 0px rgba(87, 86, 83)',
+        darkHeader: '0px 3px 0px 0px rgba(87, 86, 83)',
       },
     },
     screens: {
