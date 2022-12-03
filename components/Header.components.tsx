@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 const Guest = () => {
   return (
     <>
-      <div className="bg-white shadow shadow-gray-500 dark:bg-dark dark:shadow-none">
+      <div className="bg-white shadow shadow-gray-500 dark:bg-dark  dark:shadow-darkHeader">
         <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between pt-7 md:mb-10 pb-2">
           <Link href="/">
             <button className={playfair.className}>
@@ -45,7 +45,7 @@ const LoggedIn = () => {
 
   return (
     <>
-      <div className="bg-white shadow shadow-gray-500 dark:bg-dark dark:shadow-none">
+      <div className="bg-white shadow shadow-gray-500 dark:bg-dark dark:shadow-darkHeader">
         <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between pt-7 md:mb-10 pb-2">
           <Link href="/">
             <button className={playfair.className}>
