@@ -10,6 +10,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.finnhub.io',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
