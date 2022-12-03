@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import Image from 'next/image';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 
 interface Results {
@@ -13,65 +13,114 @@ interface Result {
   name: string;
 }
 
-export const SearchResults = ({ results, error }: Results) => {
-  const dayChange = (result: Result) => {
-    let pos = result.price - result.previous_close_price;
-    let neg = result.previous_close_price - result.price;
+export const SearchResults = ({ resultCompany, resultPrice }: any) => {
+  const perIncrease = (a: number, b: number) => {
+    let percent;
+    if (b !== 0) {
+      if (a !== 0) {
+        percent = ((b - a) / a) * 100;
+      } else {
+        percent = b * 100;
+      }
+    } else {
+      percent = -a * 100;
+    }
+    return percent.toFixed(3);
+  };
+
+  const percChange = (resultPrice: any) => {
+    let pos;
+    let neg;
+
+    if (resultPrice.pc > resultPrice.c) {
+      neg = perIncrease(resultPrice.c, resultPrice.pc);
+      return (
+        <span className="bg-red-300 text-red-600 font-bold text-lg py-1 px-4 rounded-full flex justify-center items-center md:text-xl">
+          -{neg}%
+        </span>
+      );
+    } else if (resultPrice.c > resultPrice.pc) {
+      pos = perIncrease(resultPrice.pc, resultPrice.c);
+      return (
+        <span className="bg-green-400 text-green-800 font-bold text-lg py-1 px-4 rounded-full flex justify-center items-center md:text-xl">
+          +{pos}%
+        </span>
+      );
+    }
+  };
+
+  const dayChange = (resultPrice: any) => {
+    let pos = resultPrice.c - resultPrice.pc;
+    let neg = resultPrice.pc - resultPrice.c;
     let posString = pos.toString().substring(0, 7);
     let negString = neg.toString().substring(0, 7);
 
-    if (result.previous_close_price > result.price) {
-      return <span className="text-red-500">{`-${negString}`}</span>;
-    } else if (result.price > result.previous_close_price) {
-      return <span className="text-green-600">{`+${posString}`}</span>;
+    if (resultPrice.pc > resultPrice.c) {
+      return <span className="text-red-500">{`-$${negString}`}</span>;
+    } else if (resultPrice.c > resultPrice.pc) {
+      return <span className="text-green-700">{`+$${posString}`}</span>;
     }
   };
 
   return (
     <>
-      {error.returned === 0 ? (
-        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-10 dark:shadow-none dark:bg-dark flex flex-col gap-3">
-          <h1 className="text-center">
-            No tickers found, make sure you typed in the right symbol.
+      {Object.keys(resultCompany).length !== 0 ? (
+        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3 ">
+          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl">
+            <div className="p-5 flex flex-col gap-8 md:p-8">
+              <div className="flex justify-between items-center">
+                <div className="flex gap-5 items-center">
+                  <Image
+                    src={resultCompany.logo}
+                    alt={resultCompany.name}
+                    width={56}
+                    height={56}
+                    className="rounded-full"
+                  />
+                  <h1 className="text-3xl font-bold hidden md:block">
+                    {resultCompany.ticker}
+                  </h1>
+                </div>
+                <div className="flex flex-col items-end">
+                  <h1 className="font-bold text-2xl">${resultPrice.c}</h1>
+                  <p className="text-sm">{resultCompany.currency}</p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <h1 className="text-3xl font-bold md:hidden">
+                  {resultCompany.ticker}
+                </h1>
+                <p className="text-sm md:text-3xl md:font-bold">
+                  {resultCompany.name}
+                </p>
+                <p>&#8729;</p>
+                <p className="text-sm md:text-lg">
+                  {resultCompany.finnhubIndustry}
+                </p>
+                <p>&#8729;</p>
+                <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p className="text-green-700 font-bold text-lg md:text-xl">
+                  {dayChange(resultPrice)}
+                </p>
+                {percChange(resultPrice)}
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <button className="bg-blue-700 py-1 w-14 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out">
+                <span className="text-3xl text-white">+</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-10 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3">
+          <h1 className="text-center text-gray-400 dark:text-gray-500">
+            No tickers found.
           </h1>
         </div>
-      ) : null}
-      {results.length !== 0 ? (
-        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 pt-6 pb-10 dark:shadow-none dark:bg-dark flex flex-col gap-3">
-          {results.map((result: Result) => (
-            <Fragment key={result.ticker}>
-              <div className="grid grid-cols-12 gap-3">
-                <div className="col-start-1 col-span-6 md:grid md:grid-cols-12">
-                  <div className="md:col-start-1 md:col-span-3">
-                    <span className="text-xl font-bold">{result.ticker}</span>
-                  </div>
-                  <div className="md:col-start-4 md:col-span-9">
-                    <span className="text-xs md:text-sm">{result.name}</span>
-                  </div>
-                </div>
-                <div className="col-start-7 col-span-4 md:grid md:grid-cols-2 flex flex-col items-end">
-                  <div>
-                    <span className="text-xl font-bold">${result.price}</span>
-                  </div>
-                  <div>
-                    <span className="text-xs md:text-lg">
-                      {dayChange(result)}
-                    </span>
-                  </div>
-                </div>
-                <div className="col-start-12 col-span-1 flex justify-end">
-                  <div className="flex items-center">
-                    <button className="dark:text-gray-600 dark:hover:text-white text-gray-500 hover:text-black">
-                      <IoIosAddCircleOutline className="text-2xl" />
-                    </button>
-                  </div>
-                </div>
-                <div className="border-b border-gray-300 dark:border-gray-700 col-span-12"></div>
-              </div>
-            </Fragment>
-          ))}
-        </div>
-      ) : null}
+      )}
     </>
   );
 };
