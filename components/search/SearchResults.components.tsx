@@ -113,20 +113,14 @@ export const SearchResults = ({
             <div className="flex justify-end">
               <button
                 onClick={handleAdd}
-                className="bg-blue-700 py-1 w-14 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
+                className="bg-blue-700 py-1 w-14 h-20 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
               >
                 <span className="text-3xl text-white">+</span>
               </button>
             </div>
           </div>
         </div>
-      ) : (
-        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-10 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3">
-          <h1 className="text-center text-gray-400 dark:text-gray-500">
-            No tickers found.
-          </h1>
-        </div>
-      )}
+      ) : null}
     </>
   );
 };
