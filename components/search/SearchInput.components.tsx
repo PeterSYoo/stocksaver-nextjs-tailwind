@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
@@ -28,7 +28,6 @@ export const SearchInput = () => {
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
   const [resultPrice, setResultPrice] = useState({});
   const [resultCompany, setResultCompany] = useState<any>({});
-  const [dataFetched, setDataFetched] = useState(false);
   const { data: session }: any = useSession();
   const router = useRouter();
 
@@ -44,14 +43,17 @@ export const SearchInput = () => {
       const jsonCompany = await responseCompany.json();
       const jsonPrice = await responsePrice.json();
 
-      if (jsonPrice && jsonCompany) {
+      if (Object.keys(jsonCompany).length !== 0) {
         // console.log(jsonPrice);
         // console.log(jsonCompany);
         setResultCompany(jsonCompany);
         setResultPrice(jsonPrice);
-        setDataFetched(true);
         // console.log(resultCompany, 'company');
         // console.log(resultPrice, 'price');
+      } else {
+        alert(
+          'No results found, make sure the inputted ticker symbol is correct.'
+        );
       }
 
       return {};
@@ -66,14 +68,12 @@ export const SearchInput = () => {
       user: session?.user?.id,
     });
     setResultCompany({});
-    router.push('/dashboard');
+    // router.push('/dashboard');
+    alert('Ticker added to dashboard.');
   };
 
-  const {
-    data: submitData,
-    mutateAsync,
-    isLoading,
-  } = useMutation(handleSubmit);
+  const { mutateAsync, isLoading } = useMutation(handleSubmit);
+
   const { mutateAsync: addMutateAsync, isLoading: addIsLoading } =
     useMutation(addSearch);
 
@@ -89,16 +89,6 @@ export const SearchInput = () => {
     validationSchema: SearchSchema,
     onSubmit,
   });
-
-  useEffect(() => {
-    if (dataFetched) {
-      if (Object.keys(resultCompany).length === 0) {
-        // data is empty
-        alert('No results found');
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resultCompany]);
 
   return (
     <>
