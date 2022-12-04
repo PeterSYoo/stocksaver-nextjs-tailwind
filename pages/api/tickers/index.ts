@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import usersConnect from '../../../database/usersConnect';
-import { getTickers } from '../../../lib/tickersController';
+import { createTickers, getTickers } from '../../../lib/tickersController';
 
 export default async function tickersApi(
   req: NextApiRequest,
@@ -16,8 +16,11 @@ export default async function tickersApi(
     case 'GET':
       getTickers(req, res);
       break;
+    case 'POST':
+      createTickers(req, res);
+      break;
     default:
-      res.setHeader('Allow', ['GET']);
+      res.setHeader('Allow', ['GET', 'POST']);
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
