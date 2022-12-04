@@ -7,8 +7,6 @@ import { authOptions } from './api/auth/[...nextauth]';
 const Home = ({ session }: any) => {
   const [hydrated, setHydrated] = useState(false);
 
-  console.log(session);
-
   useEffect(() => {
     setHydrated(true);
   }, []);

@@ -42,8 +42,8 @@ export const SearchInput = () => {
       const jsonPrice = await responsePrice.json();
 
       if (jsonPrice && jsonCompany) {
-        console.log(jsonPrice);
-        console.log(jsonCompany);
+        // console.log(jsonPrice);
+        // console.log(jsonCompany);
         setResultCompany(jsonCompany);
         setResultPrice(jsonPrice);
         // console.log(resultCompany, 'company');
@@ -71,7 +71,7 @@ export const SearchInput = () => {
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
 
   const onSubmit = async (values: Values) => {
-    console.log(values.search);
+    // console.log(values.search);
     await mutateAsync(values.search);
     formik.resetForm();
   };

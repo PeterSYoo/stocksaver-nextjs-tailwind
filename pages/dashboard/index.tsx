@@ -22,8 +22,6 @@ const DashboardPage = ({ session }: any) => {
   if (isLoading) return <LoaderSpinner />;
   if (isError) return <h1>{error.message}</h1>;
 
-  console.log(userTickers);
-
   return (
     <>
       <div className="mx-4 md:mx-10">
