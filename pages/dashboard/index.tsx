@@ -5,16 +5,24 @@ import { Profile } from '../../components/dashboard/Profile.components';
 import { TickerCards } from '../../components/dashboard/TickerCards.components';
 import { WinnersLosers } from '../../components/dashboard/WinnersLosers.components';
 import { LoaderSpinner } from '../../components/LoaderSpinner.components';
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getUser } from '../../lib/usersHelper';
 import { getUserTickers } from '../../lib/userTickersHelper';
 
 const DashboardPage = ({ session }: any) => {
   const user = useQuery(['user'], () => getUser(session.user.id));
-  const userTickers = useQuery(['userTickers'], () =>
-    getUserTickers(session.user.id)
-  );
+  const {
+    data: userTickers,
+    refetch,
+    isLoading,
+    isError,
+    error,
+  }: any = useQuery(['userTickers'], () => getUserTickers(session.user.id));
+
+  if (isLoading) return <LoaderSpinner />;
+  if (isError) return <h1>{error.message}</h1>;
+
+  console.log(userTickers);
 
   return (
     <>
@@ -28,11 +36,11 @@ const DashboardPage = ({ session }: any) => {
               dashboard
             </Link>
           </div>
-          <Profile user={user?.data} />
+          {/* <Profile user={user?.data} />
           <div className="md:hidden">
             <WinnersLosers />
-          </div>
-          <TickerCards tickers={userTickers.data} />
+          </div> */}
+          <TickerCards tickers={userTickers} refetch={refetch} />
         </div>
       </div>
     </>
