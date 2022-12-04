@@ -26,7 +26,7 @@ const DashboardPage = ({ session }: any) => {
     <>
       <div className="mx-4 md:mx-10">
         <div className="flex flex-col md:max-w-[1024px] gap-6 mt-4 mb-36 mx-auto">
-          <div className="mx-4 text-sm text-gray-600">
+          <div className="mx-4 text-sm text-gray-600 mt-5 md:mt-0">
             <Link
               href="/dashboard"
               className="dark:hover:text-white hover:text-black"
