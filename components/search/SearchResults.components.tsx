@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { IoIosAddCircleOutline } from 'react-icons/io';
 
 interface Results {
   results: any;
@@ -13,7 +12,12 @@ interface Result {
   name: string;
 }
 
-export const SearchResults = ({ resultCompany, resultPrice }: any) => {
+export const SearchResults = ({
+  resultCompany,
+  resultPrice,
+  handleAdd,
+  isLoading,
+}: any) => {
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -35,14 +39,14 @@ export const SearchResults = ({ resultCompany, resultPrice }: any) => {
     if (resultPrice.pc > resultPrice.c) {
       neg = perIncrease(resultPrice.c, resultPrice.pc);
       return (
-        <span className="bg-red-300 text-red-600 font-bold text-lg py-1 px-4 rounded-full flex justify-center items-center md:text-xl">
+        <span className="bg-red-300 text-red-600 font-bold text-lg px-4 rounded-full flex justify-center items-center md:text-xl">
           -{neg}%
         </span>
       );
     } else if (resultPrice.c > resultPrice.pc) {
       pos = perIncrease(resultPrice.pc, resultPrice.c);
       return (
-        <span className="bg-green-400 text-green-800 font-bold text-lg py-1 px-4 rounded-full flex justify-center items-center md:text-xl">
+        <span className="bg-green-400 text-green-800 font-bold text-lg px-4 rounded-full flex justify-center items-center md:text-xl">
           +{pos}%
         </span>
       );
@@ -67,7 +71,7 @@ export const SearchResults = ({ resultCompany, resultPrice }: any) => {
       {Object.keys(resultCompany).length !== 0 ? (
         <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3 ">
           <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl">
-            <div className="p-5 flex flex-col gap-8 md:p-8">
+            <div className="p-5 flex flex-col gap-10 md:p-8">
               <div className="flex justify-between items-center">
                 <div className="flex gap-5 items-center">
                   <Image
@@ -97,7 +101,6 @@ export const SearchResults = ({ resultCompany, resultPrice }: any) => {
                 <p className="text-sm md:text-lg">
                   {resultCompany.finnhubIndustry}
                 </p>
-                <p>&#8729;</p>
                 <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
               </div>
               <div className="flex justify-between items-center">
@@ -108,7 +111,10 @@ export const SearchResults = ({ resultCompany, resultPrice }: any) => {
               </div>
             </div>
             <div className="flex justify-end">
-              <button className="bg-blue-700 py-1 w-14 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out">
+              <button
+                onClick={handleAdd}
+                className="bg-blue-700 py-1 w-14 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
+              >
                 <span className="text-3xl text-white">+</span>
               </button>
             </div>
