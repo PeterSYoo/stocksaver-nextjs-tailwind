@@ -6,11 +6,9 @@ import { TickerCards } from '../../components/dashboard/TickerCards.components';
 import { WinnersLosers } from '../../components/dashboard/WinnersLosers.components';
 import { LoaderSpinner } from '../../components/LoaderSpinner.components';
 import { useQuery } from '@tanstack/react-query';
-import { getUser } from '../../lib/usersHelper';
 import { getUserTickers } from '../../lib/userTickersHelper';
 
 const DashboardPage = ({ session }: any) => {
-  const user = useQuery(['user'], () => getUser(session.user.id));
   const {
     data: userTickers,
     refetch,
