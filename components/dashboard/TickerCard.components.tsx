@@ -104,7 +104,7 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
     <>
       {Object.keys(company).length !== 0 ? (
         <>
-          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-72 justify-between">
+          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-72 justify-between md:w-64 md:mx-auto">
             <div className="p-4 flex flex-col gap-9">
               <div className="flex justify-between items-center">
                 <div className="flex gap-3 items-center">
@@ -138,7 +138,7 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
             </div>
             <div className="flex justify-end">
               {isLoading ? (
-                <LoaderSpinnerSearch />
+                <LoaderSpinner />
               ) : (
                 <button
                   onClick={() => handleDelete(id)}
