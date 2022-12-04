@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
@@ -28,6 +29,7 @@ export const SearchInput = () => {
   const [resultPrice, setResultPrice] = useState({});
   const [resultCompany, setResultCompany] = useState<any>({});
   const { data: session }: any = useSession();
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
@@ -62,7 +64,7 @@ export const SearchInput = () => {
       user: session?.user?.id,
     });
     setResultCompany({});
-    alert('Ticker added to dashboard');
+    router.push('/dashboard');
   };
 
   const { mutateAsync: addMutateAsync, isLoading: addIsLoading } =
