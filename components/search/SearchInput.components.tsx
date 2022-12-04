@@ -97,9 +97,18 @@ export const SearchInput = () => {
           <h1 className="text-center font-bold text-2xl mb-1">
             Search Tickers
           </h1>
-          <p className="text-xs text-center mb-5">
-            Example search&#58;&nbsp;&nbsp;&#34;AAPL&#34;
-          </p>
+          <div className="flex flex-col gap-1 mb-5">
+            <p className="text-xs text-center">
+              Example search&#58;&nbsp;&nbsp;&#34;AAPL&#34;
+            </p>
+            <p className="w-3/4 text-xs mx-auto">
+              The app is using Finnhub&apos;s Stock API free tier. Because it is
+              using the free tier, the search api endpoint is limited in scope
+              in what we are allowed to search. That is why you can only make
+              searches for a specific ticker symbol instead of giving results
+              back using generic names.
+            </p>
+          </div>
           <div className="grid grid-cols-12 h-full md:mx-5">
             <div
               className={
