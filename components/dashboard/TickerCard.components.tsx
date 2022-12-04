@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { deleteTicker } from '../../lib/dashboardHelper';
 import { LoaderSpinner } from '../LoaderSpinner.components';
-import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
 export const TickerCard = ({ ticker, id, refetch }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
@@ -142,7 +141,7 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
               ) : (
                 <button
                   onClick={() => handleDelete(id)}
-                  className="bg-red-600 w-14 md:w-10 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
+                  className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
                 >
                   <span className="text-xl text-white">-</span>
                 </button>
