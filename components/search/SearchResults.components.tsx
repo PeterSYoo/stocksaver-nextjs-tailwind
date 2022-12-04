@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 interface Results {
   results: any;
@@ -18,6 +19,8 @@ export const SearchResults = ({
   handleAdd,
   isLoading,
 }: any) => {
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<any>(true);
+
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -66,6 +69,14 @@ export const SearchResults = ({
     }
   };
 
+  useEffect(() => {
+    if (!buttonIsDisabled) {
+      setTimeout(() => {
+        setButtonIsDisabled(true);
+      }, 2000);
+    }
+  }, [buttonIsDisabled]);
+
   return (
     <>
       {Object.keys(resultCompany).length !== 0 ? (
@@ -111,12 +122,21 @@ export const SearchResults = ({
               </div>
             </div>
             <div className="flex justify-end">
-              <button
-                onClick={handleAdd}
-                className="bg-blue-700 py-1 w-14 h-20 md:w-20 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
-              >
-                <span className="text-3xl text-white">+</span>
-              </button>
+              {buttonIsDisabled ? (
+                <button
+                  onClick={() => setButtonIsDisabled(false)}
+                  className="bg-blue-700 w-14 h-20 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                >
+                  <span className="text-xl text-white">+</span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleAdd}
+                  className="bg-blue-700 ml-0 h-20 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
+                >
+                  <span className="text-xl text-white">+</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

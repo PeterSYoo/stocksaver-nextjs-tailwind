@@ -9,6 +9,7 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
   const [company, setCompany] = useState<any>({});
   const [price, setPrice] = useState<any>({});
   const [key, setKey] = useState('');
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<any>(true);
 
   const perIncrease = (a: number, b: number) => {
     let percent;
@@ -99,6 +100,14 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ticker]);
 
+  useEffect(() => {
+    if (!buttonIsDisabled) {
+      setTimeout(() => {
+        setButtonIsDisabled(true);
+      }, 2000);
+    }
+  }, [buttonIsDisabled]);
+
   return (
     <>
       {Object.keys(company).length !== 0 ? (
@@ -139,12 +148,23 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
               {isLoading ? (
                 <LoaderSpinner />
               ) : (
-                <button
-                  onClick={() => handleDelete(id)}
-                  className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl hover:ml-0 hover:rounded-bl-3xl hover:rounded-tl-none hover:w-full duration-300 cursor-pointer ease-in-out"
-                >
-                  <span className="text-xl text-white">-</span>
-                </button>
+                <div className="w-full flex justify-end">
+                  {buttonIsDisabled ? (
+                    <button
+                      onClick={() => setButtonIsDisabled(false)}
+                      className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                    >
+                      <span className="text-xl text-white">-</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleDelete(id)}
+                      className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
+                    >
+                      <span className="text-xl text-white">-</span>
+                    </button>
+                  )}
+                </div>
               )}
             </div>
           </div>
