@@ -70,7 +70,7 @@ export const SearchResults = ({
     <>
       {Object.keys(resultCompany).length !== 0 ? (
         <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3 ">
-          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl">
+          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-8 md:gap-5">
             <div className="p-5 flex flex-col gap-10 md:p-8">
               <div className="flex justify-between items-center">
                 <div className="flex gap-5 items-center">
