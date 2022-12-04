@@ -1,8 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
@@ -28,6 +28,7 @@ export const SearchInput = () => {
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
   const [resultPrice, setResultPrice] = useState({});
   const [resultCompany, setResultCompany] = useState<any>({});
+  const [dataFetched, setDataFetched] = useState(false);
   const { data: session }: any = useSession();
   const router = useRouter();
 
@@ -48,6 +49,7 @@ export const SearchInput = () => {
         // console.log(jsonCompany);
         setResultCompany(jsonCompany);
         setResultPrice(jsonPrice);
+        setDataFetched(true);
         // console.log(resultCompany, 'company');
         // console.log(resultPrice, 'price');
       }
@@ -67,13 +69,15 @@ export const SearchInput = () => {
     router.push('/dashboard');
   };
 
+  const {
+    data: submitData,
+    mutateAsync,
+    isLoading,
+  } = useMutation(handleSubmit);
   const { mutateAsync: addMutateAsync, isLoading: addIsLoading } =
     useMutation(addSearch);
 
-  const { mutateAsync, isLoading } = useMutation(handleSubmit);
-
   const onSubmit = async (values: Values) => {
-    // console.log(values.search);
     await mutateAsync(values.search);
     formik.resetForm();
   };
@@ -85,6 +89,16 @@ export const SearchInput = () => {
     validationSchema: SearchSchema,
     onSubmit,
   });
+
+  useEffect(() => {
+    if (dataFetched) {
+      if (Object.keys(resultCompany).length === 0) {
+        // data is empty
+        alert('No results found');
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resultCompany]);
 
   return (
     <>
