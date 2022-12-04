@@ -17,7 +17,7 @@ export const LoaderSpinner2 = () => {
     return (
       <>
         <div className="flex justify-center mb-5">
-          <MoonLoader color="#cccccc" size="25px" />
+          <MoonLoader color="#ffffff" size="25px" />
         </div>
       </>
     );
@@ -25,7 +25,7 @@ export const LoaderSpinner2 = () => {
     return (
       <>
         <div className="flex justify-center mb-5">
-          <MoonLoader color="#545454" size="25px" />
+          <MoonLoader color="#000000" size="25px" />
         </div>
       </>
     );

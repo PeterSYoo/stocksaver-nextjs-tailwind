@@ -17,7 +17,7 @@ export const LoaderSpinner = () => {
     return (
       <>
         <div className="fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-          <MoonLoader color="#cccccc" size="30px" />
+          <MoonLoader color="#ffffff" size="30px" />
         </div>
       </>
     );
@@ -25,7 +25,7 @@ export const LoaderSpinner = () => {
     return (
       <>
         <div className="fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-          <MoonLoader color="#545454" size="30px" />
+          <MoonLoader color="#000000" size="30px" />
         </div>
       </>
     );
