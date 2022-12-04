@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
+import { addSearch } from '../../lib/searchHelper';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { SearchResults } from './SearchResults.components';
 
@@ -24,7 +26,8 @@ const SearchSchema = Yup.object().shape({
 export const SearchInput = () => {
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
   const [resultPrice, setResultPrice] = useState({});
-  const [resultCompany, setResultCompany] = useState({});
+  const [resultCompany, setResultCompany] = useState<any>({});
+  const { data: session }: any = useSession();
 
   const handleSubmit = async () => {
     try {
@@ -52,6 +55,18 @@ export const SearchInput = () => {
       return error;
     }
   };
+
+  const handleAdd = async () => {
+    await addMutateAsync({
+      tickers: resultCompany.ticker,
+      user: session?.user?.id,
+    });
+    setResultCompany({});
+    alert('Ticker added to dashboard');
+  };
+
+  const { mutateAsync: addMutateAsync, isLoading: addIsLoading } =
+    useMutation(addSearch);
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
 
@@ -157,7 +172,12 @@ export const SearchInput = () => {
           ) : null}
         </div>
       </form>
-      <SearchResults resultCompany={resultCompany} resultPrice={resultPrice} />
+      <SearchResults
+        resultCompany={resultCompany}
+        resultPrice={resultPrice}
+        handleAdd={handleAdd}
+        isLoading={addIsLoading}
+      />
     </>
   );
 };
