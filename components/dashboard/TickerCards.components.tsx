@@ -9,7 +9,7 @@ export const TickerCards = ({ tickers, refetch }: any) => {
   if (tickers) {
     return (
       <>
-        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-5 py-6 grid md:grid-cols-3 gap-8 md:gap-x-8 md:px-8 dark:shadow-dark3xl dark:bg-dark items-start md:items-start">
+        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-5 py-6 grid md:grid-cols-3 gap-8 md:gap-x-8 md:px-8 dark:shadow-dark3xl dark:bg-dark items-start md:items-start pb-20 md:pb-10">
           {tickers?.map((ticker: any) => (
             <Fragment key={ticker._id}>
               <TickerCard
