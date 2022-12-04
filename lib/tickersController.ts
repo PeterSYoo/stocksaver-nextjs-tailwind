@@ -69,7 +69,7 @@ export const deleteTickers = async (
     const { tickersId }: any = req.query;
 
     if (tickersId) {
-      const tickers = await Tickers.findOneAndDelete({ tickers: tickersId });
+      const tickers = await Tickers.findByIdAndDelete(tickersId);
       res.status(200).json(tickers);
     }
   } catch (error) {
