@@ -1,31 +1,92 @@
-export const WinnersCard = () => {
+import Image from 'next/image';
+
+export const WinnersCard = ({ winner }: any) => {
+  const perIncrease = (a: number, b: number) => {
+    let percent;
+    if (b !== 0) {
+      if (a !== 0) {
+        percent = ((b - a) / a) * 100;
+      } else {
+        percent = b * 100;
+      }
+    } else {
+      percent = -a * 100;
+    }
+    return percent.toFixed(3);
+  };
+
+  const percChange = (price: any) => {
+    let pos;
+    let neg;
+
+    if (price?.pc > price?.c) {
+      neg = perIncrease(price?.c, price?.pc);
+      return (
+        <span className="bg-red-300 text-red-600 font-bold text-base px-4 rounded-full flex justify-center items-center md:text-sm">
+          -{neg}%
+        </span>
+      );
+    } else if (price?.c > price?.pc) {
+      pos = perIncrease(price?.pc, price?.c);
+      return (
+        <span className="bg-green-400 text-green-800 font-bold text-base px-4 rounded-full flex justify-center items-center md:text-sm">
+          +{pos}%
+        </span>
+      );
+    }
+  };
+
+  const dayChange = (price: any) => {
+    let pos = price?.c - price?.pc;
+    let neg = price?.pc - price?.c;
+    let posString = pos.toString().substring(0, 7);
+    let negString = neg.toString().substring(0, 7);
+
+    if (price?.pc > price?.c) {
+      return (
+        <span className="text-red-500 text-base md:text-sm">{`-$${negString}`}</span>
+      );
+    } else if (price?.c > price?.pc) {
+      return (
+        <span className="text-green-700 text-base md:text-sm">{`+$${posString}`}</span>
+      );
+    }
+  };
+
   return (
     <>
-      <div className="bg-green-200 grid grid-cols-12 h-40 rounded-3xl px-4 py-4 shadow-md shadow-gray-500 dark:shadow-none">
-        {/* Column 1 */}
-        <div className="col-start-1 col-span-9 ">
-          <div className="flex flex-col items-center justify-between h-full">
-            <div className="text-center">
-              <span className="mt-4 text-green-800">Top Winner of the Day</span>
-              <h1 className="text-xl font-bold dark:text-black">Apple Inc</h1>
-            </div>
-            <div className="flex justify-between w-full items-center">
-              <span className="font-bold text-green-800">$1.50</span>
-              <span className="font-bold bg-green-300 px-4 py-1 rounded-full text-green-800">
-                +2.25%
-              </span>
+      <a
+        href={winner?.company?.weburl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group"
+      >
+        <div className="bg-green-300 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72">
+          <div className="flex justify-center text-green-900 font-bold">
+            Top Winner of the Day
+          </div>
+          <div className="flex flex-col h-full justify-center items-center gap-1">
+            <Image
+              src={winner?.company?.logo}
+              alt={winner?.company?.name}
+              width={75}
+              height={75}
+              className="rounded-full group-hover:w-24 duration-300 ease-in-out"
+            />
+            <h1 className="text-md font-bold dark:text-black">
+              {winner?.company?.name}
+            </h1>
+          </div>
+          <div className="flex justify-between items-end">
+            <p className="font-bold text-md text-green-900">
+              {dayChange(winner?.price)}
+            </p>
+            <div className="font-bold text-md text-green-900rounded-full">
+              {percChange(winner?.price)}
             </div>
           </div>
         </div>
-        {/* Column 2 */}
-        <div className="col-start-10 col-span-3">
-          <div className="flex justify-center items-center h-full">
-            <div className="bg-green-300 aspect-square flex justify-center items-center p-4 rounded-full font-bold text-green-800">
-              AAPL
-            </div>
-          </div>
-        </div>
-      </div>
+      </a>
     </>
   );
 };
