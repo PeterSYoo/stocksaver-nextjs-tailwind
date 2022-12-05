@@ -61,8 +61,8 @@ export const LosersCard = ({ loser }: any) => {
         rel="noopener noreferrer"
         className="group"
       >
-        <div className="bg-red-300 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72">
-          <div className="flex justify-center text-red-700 font-bold">
+        <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
+          <div className="flex justify-center font-bold">
             Top Loser of the Day
           </div>
           <div className="flex flex-col h-full justify-center items-center gap-1">
@@ -73,9 +73,7 @@ export const LosersCard = ({ loser }: any) => {
               height={75}
               className="rounded-full group-hover:w-24 duration-300 ease-in-out"
             />
-            <h1 className="text-md font-bold dark:text-black">
-              {loser?.company?.name}
-            </h1>
+            <h1 className="text-md font-bold">{loser?.company?.name}</h1>
           </div>
           <div className="flex justify-between items-end">
             <p className="font-bold text-md text-red-700">
