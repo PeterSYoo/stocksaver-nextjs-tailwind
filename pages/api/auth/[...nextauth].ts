@@ -15,9 +15,9 @@ export const authOptions: any = {
         });
 
         // check user existance
-        const result = await Users.findOne({ email: credentials?.email });
+        const result = await Users.findOne({ username: credentials?.username });
         if (!result) {
-          throw new Error('No user Found with Email Please Sign Up...!');
+          throw new Error('No user found with that Username!');
         }
 
         // compare
@@ -27,10 +27,8 @@ export const authOptions: any = {
         );
 
         // incorrect password
-        if (!checkPassword || result.email !== credentials?.email) {
-          throw new Error(
-            JSON.stringify({ errors: result.errors, status: false })
-          );
+        if (!checkPassword) {
+          throw new Error('Wrong password!');
         }
 
         return result;
