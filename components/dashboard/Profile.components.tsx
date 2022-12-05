@@ -19,7 +19,7 @@ export const Profile = ({ user, winner, loser, tickers }: any) => {
             alt="profile image"
           />
           <h1 className="text-2xl font-bold mb-1 hidden md:block">
-            <span className={playfair.className}>@{user?.username}</span>
+            <span className={playfair.className}>@ {user?.username}</span>
           </h1>
           <h1 className="text-md hidden md:block">
             Tickers: <span className="font-normal">{tickers.length}</span>
