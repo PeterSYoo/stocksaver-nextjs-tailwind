@@ -57,13 +57,18 @@ export const Signup = () => {
       body: JSON.stringify(formik.values),
     };
 
-    await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/signup`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
+    await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/signup`,
+      options
+    ).then((response) =>
+      response.json().then((data) => {
+        if (response.status === 422) {
+          alert(data.message);
+        } else {
           router.push('/login');
         }
-      });
+      })
+    );
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
