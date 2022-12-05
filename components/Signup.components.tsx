@@ -23,11 +23,8 @@ const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'too short!')
     .max(18, 'too long!')
-    .matches(
-      /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\d+$\s]*)$/gi,
-      'name can only contain latin letters and numbers.'
-    )
-    .required('please enter a username'),
+    .required('please enter a username')
+    .matches(/^[0-9a-zA-Z]+$/, 'only letters and numbers allowed, no spaces.'),
   email: Yup.string()
     .max(50, 'too long!')
     .email()
