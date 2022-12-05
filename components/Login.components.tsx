@@ -18,10 +18,10 @@ interface Values {
 }
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string()
+  username: Yup.string()
     .max(50, 'too long!')
-    .email()
-    .required('please enter your email'),
+    .required('please enter your username')
+    .matches(/^[0-9a-zA-Z]+$/, 'only letters and numbers allowed, no spaces.'),
   password: Yup.string()
     .required('please enter your password')
     .matches(
@@ -40,13 +40,13 @@ export const Login = () => {
   const handleSubmit = async () => {
     const status: any = await signIn('credentials', {
       redirect: false,
-      email: formik.values.email,
+      username: formik.values.username,
       password: formik.values.password,
       callbackUrl: '/dashboard',
     });
 
+    if (status.error) alert(status.error);
     if (status.ok) router.push(status.url);
-    if (status.error) alert('Wrong email or password, please try again.');
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
@@ -57,7 +57,7 @@ export const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
     },
     validationSchema: SignupSchema,
@@ -78,37 +78,37 @@ export const Login = () => {
                   <label>
                     <h3
                       className={
-                        formik.errors.email
+                        formik.errors.username
                           ? 'text-red-600 dark:text-red-500 mt-5'
                           : 'mt-5'
                       }
                     >
-                      Email:
+                      Username:
                     </h3>
                     <div
                       className={
-                        formik.errors.email
+                        formik.errors.username
                           ? 'border border-red-400 text-red-400 hover:border-red-600 hover:text-red-600 flex items-center pl-2 rounded-md py-2 dark:border-red-600 dark:text-red-500 dark:hover:border-red-600 dark:hover:text-red-600'
                           : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white'
                       }
                     >
                       <MdAlternateEmail />
                       <input
-                        type="email"
-                        placeholder="user@email.com"
+                        type="text"
+                        placeholder="username"
                         className={
-                          formik.errors.email
+                          formik.errors.username
                             ? 'w-full px-2 focus:outline-none text-red-600 dark:text-red-500 dark:bg-dark placeholder:text-red-400 dark:placeholder:text-red-500 dark:placeholder:text-opacity-30 placeholder:text-opacity-50'
                             : 'w-full px-2 focus:outline-none text-black dark:bg-dark dark:text-white dark:placeholder:text-gray-700'
                         }
-                        {...formik.getFieldProps('email')}
-                        name="email"
+                        {...formik.getFieldProps('username')}
+                        name="username"
                       />
                     </div>
                     <div className="text-center">
-                      {formik.errors.email ? (
+                      {formik.errors.username ? (
                         <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.email}
+                          {formik.errors.username}
                         </span>
                       ) : (
                         <></>
@@ -165,7 +165,7 @@ export const Login = () => {
                       )}
                     </div>
                   </label>
-                  {formik.errors.email || formik.errors.password ? (
+                  {formik.errors.username || formik.errors.password ? (
                     <span className="bg-gray-400 dark:bg-gray-700 w-full mt-10 text-gray-200 dark:text-gray-500 font-bold text-xl py-2 rounded-3xl flex justify-center cursor-default">
                       Login
                     </span>
