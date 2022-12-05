@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
+import { BiUser } from 'react-icons/bi';
 import { useTheme } from 'next-themes';
 import { LoaderSpinner2 } from './LoaderSpinner2.components';
 
@@ -92,7 +92,7 @@ export const Login = () => {
                           : 'border border-gray-400 text-gray-400 hover:border-black hover:text-black flex items-center pl-2 rounded-md py-2 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-500 dark:hover:text-white'
                       }
                     >
-                      <MdAlternateEmail />
+                      <BiUser />
                       <input
                         type="text"
                         placeholder="username"
