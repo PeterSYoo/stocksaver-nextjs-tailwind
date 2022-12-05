@@ -113,37 +113,51 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
       {Object.keys(company).length !== 0 ? (
         <>
           <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-72 justify-between md:w-64 md:mx-auto">
-            <div className="p-4 flex flex-col gap-9">
-              <div className="flex justify-between items-center">
-                <div className="flex gap-3 items-center">
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full"
-                  />
-                  <div className="flex flex-col">
-                    <h1 className="text-xl font-bold">{company.ticker}</h1>
-                    <p className="text-xs">{company.name}</p>
+            <a
+              href={company.weburl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <div className="p-4 flex flex-col gap-9">
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-3 items-center">
+                    <Image
+                      src={company.logo}
+                      alt={company.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full"
+                    />
+                    <Image
+                      src={company.logo}
+                      alt={company.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                    />
+                    <div className="flex flex-col">
+                      <h1 className="text-xl font-bold">{company.ticker}</h1>
+                      <p className="text-xs">{company.name}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <h1 className="text-sm font-bold">${price.c}</h1>
+                    <p className="text-xs">{company.currency}</p>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <h1 className="text-sm font-bold">${price.c}</h1>
-                  <p className="text-xs">{company.currency}</p>
+                <div className="flex flex-col items-center">
+                  <p className="text-sm">{company.finnhubIndustry}</p>
+                  <p className="text-xs">{company.exchange}</p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="text-green-700 font-bold text-lg md:text-xl flex items-center">
+                    {dayChange(price)}
+                  </p>
+                  {percChange(price)}
                 </div>
               </div>
-              <div className="flex flex-col items-center">
-                <p className="text-sm">{company.finnhubIndustry}</p>
-                <p className="text-xs">{company.exchange}</p>
-              </div>
-              <div className="flex justify-between items-center">
-                <p className="text-green-700 font-bold text-lg md:text-xl flex items-center">
-                  {dayChange(price)}
-                </p>
-                {percChange(price)}
-              </div>
-            </div>
+            </a>
             <div className="flex justify-end">
               {isLoading ? (
                 <LoaderSpinner />

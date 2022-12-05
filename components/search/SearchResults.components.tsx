@@ -82,45 +82,59 @@ export const SearchResults = ({
       {Object.keys(resultCompany).length !== 0 ? (
         <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3 ">
           <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-8 md:gap-5">
-            <div className="p-5 flex flex-col gap-10 md:p-8">
-              <div className="flex justify-between items-center">
-                <div className="flex gap-5 items-center">
-                  <Image
-                    src={resultCompany.logo}
-                    alt={resultCompany.name}
-                    width={56}
-                    height={56}
-                    className="rounded-full"
-                  />
-                  <h1 className="text-3xl font-bold hidden md:block">
+            <a
+              href={resultCompany.weburl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <div className="p-5 flex flex-col gap-10 md:p-8">
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-5 items-center">
+                    <Image
+                      src={resultCompany.logo}
+                      alt={resultCompany.name}
+                      width={56}
+                      height={56}
+                      className="rounded-full"
+                    />
+                    <Image
+                      src={resultCompany.logo}
+                      alt={resultCompany.name}
+                      width={56}
+                      height={56}
+                      className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                    />
+                    <h1 className="text-3xl font-bold hidden md:block">
+                      {resultCompany.ticker}
+                    </h1>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <h1 className="font-bold text-2xl">${resultPrice.c}</h1>
+                    <p className="text-sm">{resultCompany.currency}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="text-3xl font-bold md:hidden">
                     {resultCompany.ticker}
                   </h1>
+                  <p className="text-sm md:text-3xl md:font-bold">
+                    {resultCompany.name}
+                  </p>
+                  <p>&#8729;</p>
+                  <p className="text-sm md:text-lg">
+                    {resultCompany.finnhubIndustry}
+                  </p>
+                  <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
                 </div>
-                <div className="flex flex-col items-end">
-                  <h1 className="font-bold text-2xl">${resultPrice.c}</h1>
-                  <p className="text-sm">{resultCompany.currency}</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-green-700 font-bold text-lg md:text-xl">
+                    {dayChange(resultPrice)}
+                  </p>
+                  {percChange(resultPrice)}
                 </div>
               </div>
-              <div className="flex flex-col items-center">
-                <h1 className="text-3xl font-bold md:hidden">
-                  {resultCompany.ticker}
-                </h1>
-                <p className="text-sm md:text-3xl md:font-bold">
-                  {resultCompany.name}
-                </p>
-                <p>&#8729;</p>
-                <p className="text-sm md:text-lg">
-                  {resultCompany.finnhubIndustry}
-                </p>
-                <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
-              </div>
-              <div className="flex justify-between items-center">
-                <p className="text-green-700 font-bold text-lg md:text-xl">
-                  {dayChange(resultPrice)}
-                </p>
-                {percChange(resultPrice)}
-              </div>
-            </div>
+            </a>
             <div className="flex justify-end">
               {buttonIsDisabled ? (
                 <button
