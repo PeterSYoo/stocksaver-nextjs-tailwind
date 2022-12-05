@@ -178,12 +178,6 @@ export const SearchInput = () => {
           ) : null}
         </div>
       </form>
-      <SearchResults
-        resultCompany={resultCompany}
-        resultPrice={resultPrice}
-        handleAdd={handleAdd}
-        isLoading={addIsLoading}
-      />
       <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-6 dark:bg-dark max-w-[500px] mx-auto md:max-w-[650px] md:mx-auto dark:shadow-dark3xl">
         <p className="text-sm">
           This app consumes Finnhub&apos;s Stock API. It&apos;s currently using
@@ -193,6 +187,12 @@ export const SearchInput = () => {
           giving multiple results back using generic names.
         </p>
       </div>
+      <SearchResults
+        resultCompany={resultCompany}
+        resultPrice={resultPrice}
+        handleAdd={handleAdd}
+        isLoading={addIsLoading}
+      />
     </>
   );
 };
