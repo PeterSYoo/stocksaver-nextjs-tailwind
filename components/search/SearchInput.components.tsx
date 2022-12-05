@@ -97,18 +97,9 @@ export const SearchInput = () => {
           <h1 className="text-center font-bold text-2xl mb-1">
             Search Tickers
           </h1>
-          <div className="flex flex-col gap-1 mb-5">
-            <p className="text-xs text-center">
-              Example search&#58;&nbsp;&nbsp;&#34;AAPL&#34;
-            </p>
-            <p className="w-3/4 text-xs mx-auto">
-              The app is using Finnhub&apos;s Stock API free tier. Because it is
-              using the free tier, the search api endpoint is limited in scope
-              in what we are allowed to search. That is why you can only make
-              searches for a specific ticker symbol instead of giving results
-              back using generic names.
-            </p>
-          </div>
+          <p className="text-xs text-center mb-6">
+            Example search&#58;&nbsp;&nbsp;&#34;AAPL&#34;
+          </p>
           <div className="grid grid-cols-12 h-full md:mx-5">
             <div
               className={
@@ -193,6 +184,15 @@ export const SearchInput = () => {
         handleAdd={handleAdd}
         isLoading={addIsLoading}
       />
+      <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-6 dark:bg-dark max-w-[500px] mx-auto md:max-w-[650px] md:mx-auto dark:shadow-dark3xl">
+        <p className="text-sm">
+          This app consumes Finnhub&apos;s Stock API. It&apos;s currently using
+          the free tier, and since it&apos;s on the free tier the search api
+          endpoint is limited in scope in what we are allowed to search. That is
+          why you can only make searches for a specific ticker symbol instead of
+          giving multiple results back using generic names.
+        </p>
+      </div>
     </>
   );
 };
