@@ -59,7 +59,7 @@ export const WinnersCard = ({ winner }: any) => {
     let pos;
     let neg;
 
-    if (price?.pc > price?.c || price === undefined) {
+    if (price?.pc > price?.c || price === undefined || price) {
       neg = perIncrease(price?.c, price?.pc);
       return (
         <>
