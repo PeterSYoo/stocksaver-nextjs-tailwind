@@ -13,9 +13,8 @@ import { useEffect, useState } from 'react';
 const DashboardPage = ({ session }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<any>([{}]);
-  const [updatedCompany, setUpdatedCompany] = useState();
-  const [winner, setWinner] = useState();
-  const [loser, setLoser] = useState();
+  const [winner, setWinner] = useState<any>({});
+  const [loser, setLoser] = useState<any>({});
   const [localTickers, setLocalTickers] = useState<any>([]);
   const [deletedTicker, setDeletedTicker] = useState('');
 
@@ -144,8 +143,9 @@ const DashboardPage = ({ session }: any) => {
             tickers={userTickers}
             refetch={refetch}
             localTickers={localTickers}
-            setLocalTickers={setLocalTickers}
             setDeletedTicker={setDeletedTicker}
+            setWinner={setWinner}
+            setLoser={setLoser}
           />
         </div>
       </div>
