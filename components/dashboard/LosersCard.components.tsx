@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { FaSmileBeam } from 'react-icons/fa';
+import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
 export const LosersCard = ({ loser }: any) => {
   const perIncrease = (a: number, b: number) => {
@@ -53,38 +55,66 @@ export const LosersCard = ({ loser }: any) => {
     }
   };
 
-  return (
-    <>
-      <a
-        href={loser?.company?.weburl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group"
-      >
-        <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
-          <div className="flex justify-center font-bold">
-            Top Loser of the Day
-          </div>
-          <div className="flex flex-col h-full justify-center items-center gap-1">
-            <Image
-              src={loser?.company?.logo}
-              alt={loser?.company?.name}
-              width={75}
-              height={75}
-              className="rounded-full group-hover:w-24 duration-300 ease-in-out"
-            />
-            <h1 className="text-md font-bold">{loser?.company?.name}</h1>
-          </div>
-          <div className="flex justify-between items-end">
-            <p className="font-bold text-md text-red-700">
-              {dayChange(loser?.price)}
-            </p>
-            <div className="font-bold text-md text-red-700 rounded-full">
-              {percChange(loser?.price)}
+  const checkIfLoser = (price: any) => {
+    let pos;
+    let neg;
+
+    if (price?.pc > price?.c) {
+      pos = perIncrease(price?.pc, price?.c);
+      return (
+        <>
+          <a
+            href={loser?.company?.weburl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group"
+          >
+            <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
+              <div className="flex justify-center font-bold">
+                Top Loser of the Day
+              </div>
+              <div className="flex flex-col h-full justify-center items-center gap-1">
+                {loser.company.logo ? (
+                  <Image
+                    src={loser?.company?.logo}
+                    alt={loser?.company?.name}
+                    width={75}
+                    height={75}
+                    className="rounded-full group-hover:w-24 duration-300 ease-in-out"
+                  />
+                ) : (
+                  <div className="mb-2">
+                    <LoaderSpinnerSearch />
+                  </div>
+                )}
+
+                <h1 className="text-md font-bold">{loser?.company?.name}</h1>
+              </div>
+              <div className="flex justify-between items-end">
+                <p className="font-bold text-md text-red-700">
+                  {dayChange(loser?.price)}
+                </p>
+                <div className="font-bold text-md text-red-700 rounded-full">
+                  {percChange(loser?.price)}
+                </div>
+              </div>
+            </div>
+          </a>
+        </>
+      );
+    } else if (price?.c > price?.pc || price === undefined) {
+      neg = perIncrease(price?.c, price?.pc);
+      return (
+        <>
+          <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
+            <div className="flex justify-center items-center font-bold h-full gap-3">
+              No Losers <FaSmileBeam className="text-3xl" />
             </div>
           </div>
-        </div>
-      </a>
-    </>
-  );
+        </>
+      );
+    }
+  };
+
+  return <>{checkIfLoser(loser?.price)}</>;
 };
