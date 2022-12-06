@@ -9,9 +9,9 @@ export const TickerCard = ({
   ticker,
   id,
   refetch,
-  localTickers,
-  setLocalTickers,
   setDeletedTicker,
+  setWinner,
+  setLoser,
 }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<any>({});
@@ -75,6 +75,8 @@ export const TickerCard = ({
     await mutateAsync(id);
     await refetch();
     setDeletedTicker(ticker);
+    setWinner({});
+    setLoser({});
   };
 
   const { mutateAsync, isLoading } = useMutation(deleteTicker);
