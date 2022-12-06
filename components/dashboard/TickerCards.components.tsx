@@ -6,8 +6,9 @@ export const TickerCards = ({
   tickers,
   refetch,
   localTickers,
-  setLocalTickers,
   setDeletedTicker,
+  setWinner,
+  setLoser,
 }: any) => {
   if (tickers) {
     return (
@@ -19,9 +20,9 @@ export const TickerCards = ({
                 ticker={ticker.tickers}
                 refetch={refetch}
                 id={ticker._id}
-                localTickers={localTickers}
-                setLocalTickers={setLocalTickers}
                 setDeletedTicker={setDeletedTicker}
+                setWinner={setWinner}
+                setLoser={setLoser}
               />
             </Fragment>
           ))}
