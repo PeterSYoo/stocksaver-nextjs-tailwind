@@ -22,7 +22,7 @@ export const Profile = ({ user, winner, loser, tickers }: any) => {
             <span className={playfair.className}>@ {user?.username}</span>
           </h1>
           <h1 className="text-md hidden md:block">
-            Tickers: <span className="font-normal">{tickers.length}</span>
+            Tickers: <span className="font-normal">{tickers?.length}</span>
           </h1>
         </div>
         <div className="flex flex-col justify-center items-center md:col-start-3 md:col-span-10">
@@ -30,15 +30,11 @@ export const Profile = ({ user, winner, loser, tickers }: any) => {
             <span className={playfair.className}>@{user?.username}</span>
           </h1>
           <h1 className="text-md md:hidden">
-            Tickers: <span className="font-normal">13</span>
+            Tickers: <span className="font-normal">{tickers?.length}</span>
           </h1>
           <div className="md:flex gap-10 hidden ml-12 justify-center">
-            {tickers.length === 0 ? null : (
-              <>
-                <WinnersCard winner={winner} />
-                <LosersCard loser={loser} />
-              </>
-            )}
+            <WinnersCard winner={winner} />
+            <LosersCard loser={loser} />
           </div>
         </div>
       </div>
