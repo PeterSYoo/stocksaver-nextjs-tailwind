@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { FaSmileBeam } from 'react-icons/fa';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
@@ -64,7 +63,7 @@ export const LosersCard = ({ loser }: any) => {
       pos = perIncrease(price?.pc, price?.c);
       return (
         <>
-          {Object.keys(price).length === 0 ? (
+          {price?.c ? (
             <>
               <a
                 href={loser?.company?.weburl}
@@ -119,7 +118,7 @@ export const LosersCard = ({ loser }: any) => {
                     Top Loser of the Day
                   </div>
                   <div className="flex flex-col h-full justify-center items-center gap-1">
-                    {loser.company.logo ? (
+                    {loser?.company?.logo ? (
                       <Image
                         src={loser?.company?.logo}
                         alt={loser?.company?.name}
@@ -155,11 +154,11 @@ export const LosersCard = ({ loser }: any) => {
       neg = perIncrease(price?.c, price?.pc);
       return (
         <>
-          {price === undefined ? (
+          {price?.error ? (
             <>
               <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
                 <div className="flex justify-center items-center font-bold h-full gap-3">
-                  No Losers <FaSmileBeam className="text-3xl" />
+                  <LoaderSpinnerSearch />
                 </div>
               </div>
             </>
@@ -167,7 +166,7 @@ export const LosersCard = ({ loser }: any) => {
             <>
               <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
                 <div className="flex justify-center items-center font-bold h-full gap-3">
-                  <LoaderSpinnerSearch />
+                  No Losers <FaSmileBeam className="text-3xl" />
                 </div>
               </div>
             </>
