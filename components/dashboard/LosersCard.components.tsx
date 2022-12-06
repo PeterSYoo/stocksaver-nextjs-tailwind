@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { FaSmileBeam } from 'react-icons/fa';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
@@ -24,7 +25,7 @@ export const LosersCard = ({ loser }: any) => {
     if (price?.pc > price?.c) {
       neg = perIncrease(price?.c, price?.pc);
       return (
-        <span className="bg-red-400 text-red-600 font-bold text-base px-4 rounded-full flex justify-center items-center md:text-sm">
+        <span className="bg-red-300 text-red-600 font-bold text-base px-4 rounded-full flex justify-center items-center md:text-sm">
           -{neg}%
         </span>
       );
