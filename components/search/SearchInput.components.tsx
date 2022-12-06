@@ -182,9 +182,9 @@ export const SearchInput = () => {
         <p className="text-sm">
           This app consumes Finnhub&apos;s Stock API. It&apos;s currently using
           the free tier, and since it&apos;s on the free tier the search api
-          endpoint is limited in scope in what we are allowed to search. That is
-          why you can only make searches for a specific ticker symbol instead of
-          giving multiple results back using generic names.
+          endpoint is limited in scope in what you are allowed to search.
+          That&apos;s why you are only able to make searches for a specific
+          ticker symbol and not for multiple symbols or generic names.
         </p>
       </div>
       <SearchResults

@@ -105,11 +105,9 @@ const DashboardPage = ({ session }: any) => {
             loser={loser}
             tickers={userTickers}
           />
-          {userTickers.length === 0 ? null : (
-            <div className="md:hidden">
-              <WinnersLosers winner={winner} loser={loser} />
-            </div>
-          )}
+          <div className="md:hidden">
+            <WinnersLosers winner={winner} loser={loser} />
+          </div>
           <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-6 dark:bg-dark max-w-[500px] mx-auto md:max-w-[768px] md:mx-auto dark:shadow-dark3xl">
             <p className="text-sm">
               This app consumes Finnhub&apos;s Stock API. It&apos;s currently
@@ -118,7 +116,7 @@ const DashboardPage = ({ session }: any) => {
               the allotted 60 queries and will need to wait 1 minute for the
               cooldown to refresh. Each card represents 1 query since the free
               tier does not offer an API endpoint that allows for multiple stock
-              symbols as a parameter, so each render is pretty expensive.
+              symbols as a parameter. So each render is pretty expensive.
             </p>
           </div>
           <TickerCards tickers={userTickers} refetch={refetch} />
