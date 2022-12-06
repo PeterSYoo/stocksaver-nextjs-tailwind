@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { deleteTicker } from '../../lib/dashboardHelper';
 import { LoaderSpinner } from '../LoaderSpinner.components';
+import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
 export const TickerCard = ({ ticker, id, refetch }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
@@ -122,20 +123,27 @@ export const TickerCard = ({ ticker, id, refetch }: any) => {
               <div className="p-4 flex flex-col gap-9">
                 <div className="flex justify-between items-center">
                   <div className="flex gap-3 items-center">
-                    <Image
-                      src={company.logo}
-                      alt={company.name}
-                      width={50}
-                      height={50}
-                      className="rounded-full"
-                    />
-                    <Image
-                      src={company.logo}
-                      alt={company.name}
-                      width={50}
-                      height={50}
-                      className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
-                    />
+                    {company.logo ? (
+                      <>
+                        <Image
+                          src={company.logo}
+                          alt={company.name}
+                          width={50}
+                          height={50}
+                          className="rounded-full"
+                        />
+                        <Image
+                          src={company.logo}
+                          alt={company.name}
+                          width={50}
+                          height={50}
+                          className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                        />
+                      </>
+                    ) : (
+                      <LoaderSpinnerSearch />
+                    )}
+
                     <div className="flex flex-col">
                       <h1 className="text-xl font-bold">{company.ticker}</h1>
                       <p className="text-xs">{company.name}</p>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 
 interface Results {
   results: any;
@@ -91,20 +92,27 @@ export const SearchResults = ({
               <div className="p-5 flex flex-col gap-10 md:p-8">
                 <div className="flex justify-between items-center">
                   <div className="flex gap-5 items-center">
-                    <Image
-                      src={resultCompany.logo}
-                      alt={resultCompany.name}
-                      width={56}
-                      height={56}
-                      className="rounded-full"
-                    />
-                    <Image
-                      src={resultCompany.logo}
-                      alt={resultCompany.name}
-                      width={56}
-                      height={56}
-                      className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
-                    />
+                    {resultCompany.logo ? (
+                      <>
+                        <Image
+                          src={resultCompany.logo}
+                          alt={resultCompany.name}
+                          width={56}
+                          height={56}
+                          className="rounded-full"
+                        />
+                        <Image
+                          src={resultCompany.logo}
+                          alt={resultCompany.name}
+                          width={56}
+                          height={56}
+                          className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                        />
+                      </>
+                    ) : (
+                      <LoaderSpinnerSearch />
+                    )}
+
                     <h1 className="text-3xl font-bold hidden md:block">
                       {resultCompany.ticker}
                     </h1>
