@@ -13,8 +13,11 @@ import { useEffect, useState } from 'react';
 const DashboardPage = ({ session }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<any>([{}]);
+  const [updatedCompany, setUpdatedCompany] = useState();
   const [winner, setWinner] = useState();
   const [loser, setLoser] = useState();
+  const [localTickers, setLocalTickers] = useState<any>([]);
+  const [deletedTicker, setDeletedTicker] = useState('');
 
   const user = useQuery(['user'], () => getUser(session?.user?.id));
 
@@ -25,6 +28,10 @@ const DashboardPage = ({ session }: any) => {
     isError,
     error,
   }: any = useQuery(['userTickers'], () => getUserTickers(session.user.id));
+
+  useEffect(() => {
+    setLocalTickers(userTickers);
+  }, [userTickers]);
 
   useEffect(() => {
     if (userTickers !== undefined) {
@@ -42,8 +49,6 @@ const DashboardPage = ({ session }: any) => {
               const jsonPrice = await responsePrice.json();
 
               if (jsonPrice && jsonCompany) {
-                // console.log(jsonPrice);
-                // console.log(jsonCompany);
                 setCompany((current: any) => [
                   ...current,
                   { company: jsonCompany, price: jsonPrice },
@@ -61,7 +66,7 @@ const DashboardPage = ({ session }: any) => {
       getData(userTickers);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTickers]);
+  }, [userTickers, userTickers?._id]);
 
   useEffect(() => {
     if (company !== undefined) {
@@ -82,6 +87,19 @@ const DashboardPage = ({ session }: any) => {
         setLoser(smallestObject);
       }
     }
+
+    if (deletedTicker !== '') {
+      let temp = company;
+      let tempList = [];
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i]?.company?.ticker !== deletedTicker) {
+          tempList.push(temp[i]);
+        }
+      }
+      setCompany(tempList);
+      setDeletedTicker('');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [company]);
 
   if (isLoading) return <LoaderSpinner />;
@@ -116,10 +134,19 @@ const DashboardPage = ({ session }: any) => {
               the allotted 60 queries and will need to wait 1 minute for the
               cooldown to refresh. Each card represents 1 query since the free
               tier does not offer an API endpoint that allows for multiple stock
-              symbols as a parameter. So each render is pretty expensive.
+              symbols as a parameter. So each render is pretty expensive. If
+              only a single card is not rendering, that means the API has
+              blocked that data from being available to us through the free
+              tier.
             </p>
           </div>
-          <TickerCards tickers={userTickers} refetch={refetch} />
+          <TickerCards
+            tickers={userTickers}
+            refetch={refetch}
+            localTickers={localTickers}
+            setLocalTickers={setLocalTickers}
+            setDeletedTicker={setDeletedTicker}
+          />
         </div>
       </div>
     </>
