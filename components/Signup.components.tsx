@@ -42,6 +42,7 @@ const SignupSchema = Yup.object().shape({
 
 export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
 
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -61,6 +62,7 @@ export const Signup = () => {
       response.json().then((data) => {
         if (response.status === 422) {
           alert(data.message);
+          setErrorModalOpen(true);
         } else {
           router.push('/login');
         }
