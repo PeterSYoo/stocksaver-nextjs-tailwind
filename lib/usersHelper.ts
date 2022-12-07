@@ -1,3 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
+
 const APP_URL: any = process.env.NEXT_PUBLIC_APP_URL;
 
 // GET all users
@@ -27,12 +29,12 @@ export const getUser = async (userId: string) => {
 };
 
 // Update single user
-export const updateUser = async (userId: string, formData: string) => {
+export const updateUser = async (userId: string, image: string) => {
   try {
     const Options = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ image: image }),
     };
 
     const response = await fetch(`${APP_URL}/api/users/${userId}`, Options);
