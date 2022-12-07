@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { FiChevronLeft } from 'react-icons/fi';
 
 interface Results {
   results: any;
@@ -81,16 +82,19 @@ export const SearchResults = ({
   return (
     <>
       {Object.keys(resultCompany).length !== 0 ? (
-        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3 ">
-          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-8 md:gap-5">
-            <a
-              href={resultCompany.weburl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <div className="p-5 flex flex-col gap-10 md:p-8">
-                <div className="flex justify-between items-center">
+        <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-8 md:px-14 pt-10 pb-14 dark:shadow-dark3xl dark:bg-dark flex flex-col gap-3">
+          <div
+            onClick={() => setButtonIsDisabled(false)}
+            className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-8 md:gap-5 cursor-pointer group"
+          >
+            <div className="p-5 flex flex-col gap-10 md:p-8">
+              <div className="flex justify-between items-center">
+                <a
+                  href={resultCompany.weburl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
                   <div className="flex gap-5 items-center">
                     {resultCompany.logo ? (
                       <>
@@ -99,64 +103,58 @@ export const SearchResults = ({
                           alt={resultCompany.name}
                           width={56}
                           height={56}
-                          className="rounded-full"
-                        />
-                        <Image
-                          src={resultCompany.logo}
-                          alt={resultCompany.name}
-                          width={56}
-                          height={56}
-                          className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                          className="rounded-full cursor-pointer group-hover:w-16 duration-300 ease-in-out"
                         />
                       </>
                     ) : (
                       <LoaderSpinnerSearch />
                     )}
-
-                    <h1 className="text-3xl font-bold hidden md:block">
+                    <h1 className="text-3xl font-bold hidden md:block duration-300 ease-in-out">
                       {resultCompany.ticker}
                     </h1>
                   </div>
-                  <div className="flex flex-col items-end">
-                    <h1 className="font-bold text-2xl">${resultPrice.c}</h1>
-                    <p className="text-sm">{resultCompany.currency}</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <h1 className="text-3xl font-bold md:hidden">
-                    {resultCompany.ticker}
-                  </h1>
-                  <p className="text-sm md:text-3xl md:font-bold">
-                    {resultCompany.name}
-                  </p>
-                  <p>&#8729;</p>
-                  <p className="text-sm md:text-lg">
-                    {resultCompany.finnhubIndustry}
-                  </p>
-                  <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-green-700 font-bold text-lg md:text-xl">
-                    {dayChange(resultPrice)}
-                  </p>
-                  {percChange(resultPrice)}
+                </a>
+                <div className="flex flex-col items-end">
+                  <h1 className="font-bold text-2xl">${resultPrice.c}</h1>
+                  <p className="text-sm">{resultCompany.currency}</p>
                 </div>
               </div>
-            </a>
+              <div className="flex flex-col items-center">
+                <h1 className="text-3xl font-bold md:hidden">
+                  {resultCompany.ticker}
+                </h1>
+                <p className="text-sm md:text-3xl md:font-bold">
+                  {resultCompany.name}
+                </p>
+                <p>&#8729;</p>
+                <p className="text-sm md:text-lg">
+                  {resultCompany.finnhubIndustry}
+                </p>
+                <p className="text-sm md:text-lg">{resultCompany.exchange}</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p className="text-green-700 font-bold text-lg md:text-xl">
+                  {dayChange(resultPrice)}
+                </p>
+                {percChange(resultPrice)}
+              </div>
+            </div>
             <div className="flex justify-end">
               {buttonIsDisabled ? (
                 <button
                   onClick={() => setButtonIsDisabled(false)}
-                  className="bg-blue-700 w-14 h-20 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                  className="bg-blue-700 w-14 h-20 md:w-20 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out flex justify-center items-center"
                 >
-                  <span className="text-xl text-white">+</span>
+                  <span className="text-3xl md:text-4xl text-white group-hover:animate-bounce ease-in-out">
+                    <FiChevronLeft />
+                  </span>
                 </button>
               ) : (
                 <button
                   onClick={handleAdd}
                   className="bg-blue-700 ml-0 h-20 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
                 >
-                  <span className="text-xl text-white">+</span>
+                  <span className="text-4xl md:text-5xl text-white">+</span>
                 </button>
               )}
             </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { deleteTicker } from '../../lib/dashboardHelper';
 import { LoaderSpinner } from '../LoaderSpinner.components';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { FiChevronLeft } from 'react-icons/fi';
 
 export const TickerCard = ({
   ticker,
@@ -125,15 +126,17 @@ export const TickerCard = ({
         <>
           {Object.keys(company).length !== 0 ? (
             <>
-              <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-80 justify-between md:w-64 md:mx-auto">
-                <a
-                  href={company.weburl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group"
-                >
-                  <div className="p-4 flex flex-col gap-9">
-                    <div className="flex justify-between items-center">
+              <div
+                onClick={() => setButtonIsDisabled(false)}
+                className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-80 justify-between md:w-64 md:mx-auto cursor-pointer group"
+              >
+                <div className="p-4 flex flex-col gap-9">
+                  <div className="flex justify-between items-center group">
+                    <a
+                      href={company.weburl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <div className="flex gap-3 items-center">
                         {company?.logo ? (
                           <>
@@ -142,14 +145,7 @@ export const TickerCard = ({
                               alt={company.name}
                               width={50}
                               height={50}
-                              className="rounded-full"
-                            />
-                            <Image
-                              src={company.logo}
-                              alt={company.name}
-                              width={50}
-                              height={50}
-                              className="rounded-full absolute group-hover:animate-ping group-hover:opacity-20 opacity-0 ease-in-out inline-flex"
+                              className="rounded-full cursor-pointer group-hover:w-14 duration-200 ease-in-out"
                             />
                           </>
                         ) : (
@@ -163,23 +159,23 @@ export const TickerCard = ({
                           <p className="text-xs">{company.name}</p>
                         </div>
                       </div>
-                      <div className="flex flex-col items-end">
-                        <h1 className="text-sm font-bold">${price.c}</h1>
-                        <p className="text-xs">{company.currency}</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <p className="text-sm">{company.finnhubIndustry}</p>
-                      <p className="text-xs">{company.exchange}</p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <p className="text-green-700 font-bold text-lg md:text-xl flex items-center">
-                        {dayChange(price)}
-                      </p>
-                      {percChange(price)}
+                    </a>
+                    <div className="flex flex-col items-end">
+                      <h1 className="text-sm font-bold">${price.c}</h1>
+                      <p className="text-xs">{company.currency}</p>
                     </div>
                   </div>
-                </a>
+                  <div className="flex flex-col items-center">
+                    <p className="text-sm">{company.finnhubIndustry}</p>
+                    <p className="text-xs">{company.exchange}</p>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-green-700 font-bold text-lg md:text-xl flex items-center">
+                      {dayChange(price)}
+                    </p>
+                    {percChange(price)}
+                  </div>
+                </div>
                 <div className="flex justify-end">
                   {isLoading ? (
                     <LoaderSpinner />
@@ -188,16 +184,18 @@ export const TickerCard = ({
                       {buttonIsDisabled ? (
                         <button
                           onClick={() => setButtonIsDisabled(false)}
-                          className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                          className="bg-red-600 w-14 h-12 md:w-16 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
                         >
-                          <span className="text-xl text-white">-</span>
+                          <span className="text-3xl text-white flex justify-center items-center group-hover:animate-bounce">
+                            <FiChevronLeft />
+                          </span>
                         </button>
                       ) : (
                         <button
                           onClick={() => handleDelete(id, ticker)}
                           className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
                         >
-                          <span className="text-xl text-white">-</span>
+                          <span className="text-4xl text-white">-</span>
                         </button>
                       )}
                     </div>
@@ -225,7 +223,9 @@ export const TickerCard = ({
                       onClick={() => setButtonIsDisabled(false)}
                       className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
                     >
-                      <span className="text-xl text-white">-</span>
+                      <span className="text-2xl text-white flex justify-center items-center">
+                        <FiChevronLeft />
+                      </span>
                     </button>
                   ) : (
                     <button
