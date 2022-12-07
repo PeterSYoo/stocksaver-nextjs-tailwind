@@ -114,7 +114,7 @@ export const Profile = ({ user, winner, loser, tickers }: any) => {
                 </h1>
                 <h1 className="text-md hidden md:block">
                   Tickers:&nbsp;
-                  <span className="dark:text-red-500 text-red-600 font-bold">
+                  <span className="dark:text-blue-500 text-blue-700 font-bold">
                     {tickers?.length}
                   </span>
                 </h1>
@@ -130,7 +130,7 @@ export const Profile = ({ user, winner, loser, tickers }: any) => {
               </h1>
               <h1 className="text-md md:hidden">
                 Tickers:&nbsp;
-                <span className="dark:text-red-500 text-red-600 font-bold">
+                <span className="dark:text-blue-500 text-blue-700 font-bold">
                   {tickers?.length}
                 </span>
               </h1>
