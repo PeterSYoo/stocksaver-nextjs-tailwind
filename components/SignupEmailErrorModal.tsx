@@ -10,9 +10,12 @@ export const SignupEmailErrorModal = ({ closeEmailErrorModal }: any) => {
             <div className="flex justify-center">
               <MdEmail className="text-5xl text-red-500 dark:text-red-600" />
             </div>
-
-            <h1 className="text-lg font-bold mb-3">Email already exists!</h1>
-
+            <div className="flex flex-col justify-center items-center gap-3 mb-3">
+              <h1 className="text-lg font-bold">Email already exists!</h1>
+              <p className="text-sm">
+                That email already exists in the database.
+              </p>
+            </div>
             <button
               onClick={closeEmailErrorModal}
               className="bg-blue-600 text-white w-full rounded-md py-2 text hover:bg-black dark:hover:bg-white dark:hover:text-black"

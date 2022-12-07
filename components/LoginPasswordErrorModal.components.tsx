@@ -10,7 +10,12 @@ export const LoginPasswordErrorModal = ({ closePasswordErrorModal }: any) => {
             <div className="flex justify-center">
               <AiFillLock className="text-5xl text-red-500 dark:text-red-600" />
             </div>
-            <h1 className="text-lg font-bold mb-3">Wrong Password!</h1>
+            <div className="flex flex-col justify-center items-center gap-3 mb-3">
+              <h1 className="text-xl font-bold">Wrong Password!</h1>
+              <p className="text-sm">
+                Password does not match what you&apos;ve signed up with.
+              </p>
+            </div>
             <button
               onClick={closePasswordErrorModal}
               className="bg-blue-600 text-white w-full rounded-md py-2 text hover:bg-black dark:hover:bg-white dark:hover:text-black"

@@ -9,7 +9,12 @@ export const SignupUsernameErrorModal = ({ closeUsernameErrorModal }: any) => {
             <div className="flex justify-center">
               <FaUser className="text-5xl text-red-500 dark:text-red-600" />
             </div>
-            <h1 className="text-lg font-bold mb-3">Username already exists!</h1>
+            <div className="flex flex-col justify-center items-center gap-3 mb-3">
+              <h1 className="text-lg font-bold">Username already exists!</h1>
+              <p className="text-sm">
+                That username already exists in the database.
+              </p>
+            </div>
             <button
               onClick={closeUsernameErrorModal}
               className="bg-blue-600 text-white w-full rounded-md py-2 text hover:bg-black dark:hover:bg-white dark:hover:text-black"
