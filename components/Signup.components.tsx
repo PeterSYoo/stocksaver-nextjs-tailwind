@@ -11,6 +11,8 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
 import { useTheme } from 'next-themes';
 import { LoaderSpinner2 } from './LoaderSpinner2.components';
+import { SignupUsernameErrorModal } from './SignupUsernameErrorModal.components';
+import { SignupEmailErrorModal } from './SignupEmailErrorModal';
 
 interface Values {
   username: String;
@@ -42,7 +44,17 @@ const SignupSchema = Yup.object().shape({
 
 export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [isUsernameErrorModalOpen, setIsUsernameErrorModalOpen] =
+    useState<boolean>();
+  const [isEmailErrorModalOpen, setIsEmailErrorModalOpen] = useState<boolean>();
+
+  const closeUsernameErrorModal = () => {
+    setIsUsernameErrorModalOpen(false);
+  };
+
+  const closeEmailErrorModal = () => {
+    setIsEmailErrorModalOpen(false);
+  };
 
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -61,8 +73,11 @@ export const Signup = () => {
     ).then((response) =>
       response.json().then((data) => {
         if (response.status === 422) {
-          alert(data.message);
-          setErrorModalOpen(true);
+          if (data.message === 'Username already exists!') {
+            setIsUsernameErrorModalOpen(true);
+          } else {
+            setIsEmailErrorModalOpen(true);
+          }
         } else {
           router.push('/login');
         }
@@ -89,6 +104,20 @@ export const Signup = () => {
 
   return (
     <>
+      {isUsernameErrorModalOpen || isEmailErrorModalOpen ? (
+        <>
+          {isUsernameErrorModalOpen && (
+            <SignupUsernameErrorModal
+              closeUsernameErrorModal={closeUsernameErrorModal}
+            />
+          )}
+          {isEmailErrorModalOpen && (
+            <SignupEmailErrorModal
+              closeEmailErrorModal={closeEmailErrorModal}
+            />
+          )}
+        </>
+      ) : null}
       <form onSubmit={formik.handleSubmit}>
         <div className="md:mx-10 mt-12 mb-24">
           <div className="max-w-[327px] md:max-w-[937px] animate-border rounded-3xl from-purple-500 via-teal-500 to-blue-500 bg-[length:400%_400%] p-0.5 dark:bg-black dark:bg-gradient-to-r mx-auto">
