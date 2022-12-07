@@ -8,7 +8,9 @@ import { FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
 import { addSearch } from '../../lib/searchHelper';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { SearchErrorModal } from './SearchErrorModal.components';
 import { SearchResults } from './SearchResults.components';
+import { SearchSuccessModal } from './SearchSuccessModal.components';
 
 interface Values {
   search: any;
@@ -28,8 +30,18 @@ export const SearchInput = () => {
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
   const [resultPrice, setResultPrice] = useState({});
   const [resultCompany, setResultCompany] = useState<any>({});
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>();
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>();
+
   const { data: session }: any = useSession();
-  const router = useRouter();
+
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
+  };
+
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+  };
 
   const handleSubmit = async () => {
     try {
@@ -51,9 +63,7 @@ export const SearchInput = () => {
         // console.log(resultCompany, 'company');
         // console.log(resultPrice, 'price');
       } else {
-        alert(
-          'No results found, make sure the inputted ticker symbol is correct.'
-        );
+        setIsErrorModalOpen(true);
       }
 
       return {};
@@ -69,7 +79,7 @@ export const SearchInput = () => {
     });
     setResultCompany({});
     // router.push('/dashboard');
-    alert('Ticker added to dashboard.');
+    setIsSuccessModalOpen(true);
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
@@ -92,6 +102,19 @@ export const SearchInput = () => {
 
   return (
     <>
+      {isErrorModalOpen || isSuccessModalOpen ? (
+        <>
+          {isErrorModalOpen && (
+            <SearchErrorModal closeErrorModal={closeErrorModal} />
+          )}
+          {isSuccessModalOpen && (
+            <SearchSuccessModal
+              open={isSuccessModalOpen}
+              closeSuccessModal={closeSuccessModal}
+            />
+          )}
+        </>
+      ) : null}
       <form onSubmit={formik.handleSubmit}>
         <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-5 py-6 dark:bg-dark max-w-[500px] mx-auto md:max-w-[768px] md:mx-auto dark:shadow-dark3xl">
           <h1 className="text-center font-bold text-2xl mb-1">
