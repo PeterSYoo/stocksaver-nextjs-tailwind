@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
-import { Login } from '../../components/Login.components';
 import { authOptions } from '../api/auth/[...nextauth]';
+import { Login } from '../../components/Login.components';
 
 const LoginPage = () => {
   return (

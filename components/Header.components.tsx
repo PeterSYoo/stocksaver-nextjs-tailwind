@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Playfair_Display } from '@next/font/google';
-import { MdLogout } from 'react-icons/md';
 import { ThemeButton } from './ThemeButton.components';
 import { LoaderSpinner } from './LoaderSpinner.components';
+import { MdLogout } from 'react-icons/md';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],

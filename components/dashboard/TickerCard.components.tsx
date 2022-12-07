@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { deleteTicker } from '../../lib/dashboardHelper';
 import { LoaderSpinner } from '../LoaderSpinner.components';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';

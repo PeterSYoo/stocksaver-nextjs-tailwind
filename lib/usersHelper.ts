@@ -1,5 +1,3 @@
-import { useMutation } from '@tanstack/react-query';
-
 const APP_URL: any = process.env.NEXT_PUBLIC_APP_URL;
 
 // GET all users

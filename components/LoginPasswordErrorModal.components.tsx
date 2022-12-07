@@ -1,4 +1,3 @@
-import { BiErrorCircle } from 'react-icons/bi';
 import { AiFillLock } from 'react-icons/ai';
 
 export const LoginPasswordErrorModal = ({ closePasswordErrorModal }: any) => {

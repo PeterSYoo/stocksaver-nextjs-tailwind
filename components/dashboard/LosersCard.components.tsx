@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { FaSmileBeam } from 'react-icons/fa';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { FaSmileBeam } from 'react-icons/fa';
 
 export const LosersCard = ({ loser }: any) => {
   const perIncrease = (a: number, b: number) => {

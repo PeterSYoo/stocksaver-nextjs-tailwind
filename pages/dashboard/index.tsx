@@ -1,14 +1,14 @@
+import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 import { Profile } from '../../components/dashboard/Profile.components';
 import { TickerCards } from '../../components/dashboard/TickerCards.components';
 import { WinnersLosers } from '../../components/dashboard/WinnersLosers.components';
 import { LoaderSpinner } from '../../components/LoaderSpinner.components';
-import { useQuery } from '@tanstack/react-query';
 import { getUserTickers } from '../../lib/userTickersHelper';
 import { getUser } from '../../lib/usersHelper';
-import { useEffect, useState } from 'react';
 
 const DashboardPage = ({ session }: any) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);

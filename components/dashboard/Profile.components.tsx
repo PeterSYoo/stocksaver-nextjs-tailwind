@@ -1,12 +1,10 @@
-import { Playfair_Display } from '@next/font/google';
-import { WinnersCard } from './WinnersCard.components';
-import { LosersCard } from './LosersCard.components';
 import { useEffect, useRef, useState } from 'react';
+import { Playfair_Display } from '@next/font/google';
 import { BsFillImageFill } from 'react-icons/bs';
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
-import { getUser, updateUser } from '../../lib/usersHelper';
-import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { updateUser } from '../../lib/usersHelper';
+import { WinnersCard } from './WinnersCard.components';
+import { LosersCard } from './LosersCard.components';
 import { LoaderSpinner2 } from '../LoaderSpinner2.components';
 
 const playfair = Playfair_Display({

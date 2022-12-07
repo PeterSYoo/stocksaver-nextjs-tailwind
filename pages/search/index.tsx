@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import Link from 'next/link';
-import { SearchInput } from '../../components/search/SearchInput.components';
 import { authOptions } from '../api/auth/[...nextauth]';
+import { SearchInput } from '../../components/search/SearchInput.components';
 
 const SearchPage = () => {
   return (

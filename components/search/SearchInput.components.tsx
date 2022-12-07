@@ -1,16 +1,15 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
 import { addSearch } from '../../lib/searchHelper';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { SearchErrorModal } from './SearchErrorModal.components';
 import { SearchResults } from './SearchResults.components';
 import { SearchSuccessModal } from './SearchSuccessModal.components';
+import { FiX } from 'react-icons/fi';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 interface Values {
   search: any;

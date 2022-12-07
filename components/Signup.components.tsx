@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { BiUser } from 'react-icons/bi';
-import { MdAlternateEmail } from 'react-icons/md';
-import { RiLockPasswordLine } from 'react-icons/ri';
-import { HiFingerPrint } from 'react-icons/hi';
 import { useTheme } from 'next-themes';
 import { LoaderSpinner2 } from './LoaderSpinner2.components';
 import { SignupUsernameErrorModal } from './SignupUsernameErrorModal.components';
 import { SignupEmailErrorModal } from './SignupEmailErrorModal';
+import { BiUser } from 'react-icons/bi';
+import { MdAlternateEmail } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { HiFingerPrint } from 'react-icons/hi';
 
 interface Values {
   username: String;

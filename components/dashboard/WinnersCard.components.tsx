@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { FaSadTear } from 'react-icons/fa';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
+import { FaSadTear } from 'react-icons/fa';
 
 export const WinnersCard = ({ winner }: any) => {
   const perIncrease = (a: number, b: number) => {

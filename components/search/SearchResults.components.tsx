@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { FiChevronLeft } from 'react-icons/fi';
 
