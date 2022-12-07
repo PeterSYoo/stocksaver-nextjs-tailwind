@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Router } from 'next/router';
 import type { AppProps } from 'next/app';
@@ -13,8 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { LoaderSpinner } from '../components/LoaderSpinner.components';
 import { Header } from '../components/Header.components';
-import { SearchErrorModal } from '../components/search/SearchErrorModal.components';
-import { Layout } from '../components/Layout.components';
+import { Footer } from '../components/Footer.components';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -59,9 +58,9 @@ export default function App({ Component, pageProps }: AppProps) {
             <QueryClientProvider client={queryClient}>
               <Hydrate state={pageProps.dehydratedState}>
                 <ThemeProvider enableSystem={true} attribute="class">
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
+                  <Header />
+                  <Component {...pageProps} />
+                  <Footer />
                 </ThemeProvider>
               </Hydrate>
             </QueryClientProvider>
