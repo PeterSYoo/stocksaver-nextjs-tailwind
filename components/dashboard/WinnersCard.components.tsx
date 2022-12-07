@@ -55,8 +55,6 @@ export const WinnersCard = ({ winner }: any) => {
     }
   };
 
-  console.log(winner?.price);
-
   const checkIfWinner = (price: any) => {
     let pos;
     let neg;
