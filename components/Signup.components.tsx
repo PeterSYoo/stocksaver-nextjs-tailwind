@@ -159,9 +159,14 @@ export const Signup = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.username ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.username}
-                        </span>
+                        <>
+                          {formik.errors.username ===
+                          'please enter a username' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.username}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
@@ -199,9 +204,14 @@ export const Signup = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.email ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.email}
-                        </span>
+                        <>
+                          {formik.errors.email ===
+                          'please enter your email' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.email}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
@@ -249,9 +259,14 @@ export const Signup = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.password ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.password}
-                        </span>
+                        <>
+                          {formik.errors.password ===
+                          'please enter your password' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.password}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
@@ -299,9 +314,14 @@ export const Signup = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.cpassword ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.cpassword}
-                        </span>
+                        <>
+                          {formik.errors.cpassword ===
+                          'please confirm your password' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.cpassword}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
@@ -328,7 +348,7 @@ export const Signup = () => {
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
-                    Already have an account?{' '}
+                    Already have an account?&nbsp;
                     <Link
                       href="/login"
                       className="text-black hover:text-gray-300 dark:text-white dark:hover:text-gray-800"

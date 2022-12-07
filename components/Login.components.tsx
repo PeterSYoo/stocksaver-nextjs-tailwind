@@ -140,9 +140,14 @@ export const Login = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.username ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.username}
-                        </span>
+                        <>
+                          {formik.errors.username ===
+                          'please enter your username' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.username}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
@@ -190,9 +195,14 @@ export const Login = () => {
                     </div>
                     <div className="text-center">
                       {formik.errors.password ? (
-                        <span className="text-[10px] text-red-500 md:text-[12px]">
-                          {formik.errors.password}
-                        </span>
+                        <>
+                          {formik.errors.password ===
+                          'please enter your password' ? null : (
+                            <span className="text-[10px] text-red-500 md:text-[12px]">
+                              {formik.errors.password}
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <></>
                       )}
