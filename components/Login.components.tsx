@@ -11,6 +11,8 @@ import { HiFingerPrint } from 'react-icons/hi';
 import { BiUser } from 'react-icons/bi';
 import { useTheme } from 'next-themes';
 import { LoaderSpinner2 } from './LoaderSpinner2.components';
+import { LoginUsernameErrorModal } from './LoginUsernameErrorModal.components';
+import { LoginPasswordErrorModal } from './LoginPasswordErrorModal.components';
 
 interface Values {
   email: String;
@@ -32,6 +34,18 @@ const SignupSchema = Yup.object().shape({
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isUsernameErrorModalOpen, setIsUsernameErrorModalOpen] =
+    useState<boolean>();
+  const [isPasswordErrorModalOpen, setIsPasswordErrorModalOpen] =
+    useState<boolean>();
+
+  const closeUsernameErrorModal = () => {
+    setIsUsernameErrorModalOpen(false);
+  };
+
+  const closePasswordErrorModal = () => {
+    setIsPasswordErrorModalOpen(false);
+  };
 
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -45,7 +59,12 @@ export const Login = () => {
       callbackUrl: '/dashboard',
     });
 
-    if (status.error) alert(status.error);
+    if (status.error === 'No user found with that Username!') {
+      setIsUsernameErrorModalOpen(true);
+    } else {
+      setIsPasswordErrorModalOpen(true);
+    }
+
     if (status.ok) router.push(status.url);
   };
 
@@ -66,6 +85,20 @@ export const Login = () => {
 
   return (
     <>
+      {isUsernameErrorModalOpen || isPasswordErrorModalOpen ? (
+        <>
+          {isUsernameErrorModalOpen && (
+            <LoginUsernameErrorModal
+              closeUsernameErrorModal={closeUsernameErrorModal}
+            />
+          )}
+          {isPasswordErrorModalOpen && (
+            <LoginPasswordErrorModal
+              closePasswordErrorModal={closePasswordErrorModal}
+            />
+          )}
+        </>
+      ) : null}
       <form onSubmit={formik.handleSubmit}>
         <div className="md:mx-10 mt-12 mb-24">
           <div className="max-w-[327px] md:max-w-[937px] animate-border rounded-3xl from-purple-500 via-teal-500 to-blue-500 bg-[length:400%_400%] p-0.5 dark:bg-black dark:bg-gradient-to-r mx-auto">
