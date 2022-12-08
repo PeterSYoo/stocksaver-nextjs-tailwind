@@ -72,7 +72,7 @@ const LoggedIn = () => {
 };
 
 export const Header = () => {
-  const { data: session, status }: any = useSession();
+  const { status }: any = useSession();
 
   if (status === 'loading') {
     return (
