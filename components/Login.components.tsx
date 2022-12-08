@@ -15,8 +15,8 @@ import { HiFingerPrint } from 'react-icons/hi';
 import { BiUser } from 'react-icons/bi';
 
 interface Values {
-  email: String;
-  password: String;
+  username: string;
+  password: string;
 }
 
 const SignupSchema = Yup.object().shape({
@@ -59,13 +59,13 @@ export const Login = () => {
       callbackUrl: '/dashboard',
     });
 
-    if (status.error === 'No user found with that Username!') {
+    if (status?.error! === 'No user found with that Username!') {
       setIsUsernameErrorModalOpen(true);
     } else {
       setIsPasswordErrorModalOpen(true);
     }
 
-    if (status.ok) router.push(status.url);
+    if (status?.ok) router.push(status?.url!);
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
