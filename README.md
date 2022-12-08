@@ -25,6 +25,7 @@ App Link - https://tickersaver.vercel.app/
 - Formik
 - Yup
 - Finnhub's Stock API
+- Cloudinary
 
 ## App Features
 
