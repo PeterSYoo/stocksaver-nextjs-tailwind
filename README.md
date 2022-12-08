@@ -30,6 +30,7 @@ App Link - https://tickersaver.vercel.app/
 ## App Features
 
 - All pages are built responsively for mobile and desktop.
+- Light/Dark theme.
 - Persists data by saving users to MongoDB, then saving ticker symbols to documents in a tickers collection that references the current logged in user's user document, then makes API calls to Finnhub based on the ticker symbols from the tickers collection in MongoDB.
 - Grabs company and company quote information from Finnhub and displays them as cards.
 - Finds percentage daily change based off calculations from previous day close price and current price.
