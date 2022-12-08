@@ -34,6 +34,8 @@ App Link - https://tickersaver.vercel.app/
 - Grabs company and company quote information from Finnhub and displays them as cards.
 - Finds percentage daily change based off calculations from previous day close price and current price.
 - Updates Winners and Losers in real time.
+- Updates Profile image in real time.
+- Able to upload a profile image to Cloudinary, then updates the current logged in user document's image prop with the Cloudinary URL. Sets the state that holds the profile image url everytime you make a PUT request and on initial load.
 
 ---
 
