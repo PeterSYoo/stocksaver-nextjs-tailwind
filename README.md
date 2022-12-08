@@ -31,7 +31,7 @@ App Link - https://tickersaver.vercel.app/
 
 - All pages are built responsively for mobile and desktop.
 - Grabs company and company quote information and displays them as cards.
-- Finds percentage change based off calculations from prev day close price and current price.
+- Finds percentage daily change based off calculations from previous day close price and current price.
 - Updates Winners and Losers in real time.
 
 ---
