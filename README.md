@@ -16,8 +16,10 @@ App Link - https://tickersaver.vercel.app/
 
 - TypeScript
 - NextJS
+- NextAuth
 - MongoDB
 - Mongoose
+- Bcrypt
 - Tailwind CSS
 - React Query
 - Formik
