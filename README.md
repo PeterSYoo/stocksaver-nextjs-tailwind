@@ -64,7 +64,7 @@ App Link - https://tickersaver.vercel.app/
   - The search input on submit makes 2 simultaneous API calls to 2 API endpoints, 1 for company information and 1 for company quote information. If the JSON object received is not empty, then we set the 2 JSON objects to their respective client side states. Else if the JSON object is empty, then it triggers a modal that will display an error.
   - Clicking on the `+` button on the rendered results card will make a POST request to our custom API endpoint that's connected to our MongoDB. That POST request will create a new document in our `tickers collection` which will be used on our dashboard. It will also trigger a modal with a success message with 2 buttons asking to return to either the dashboard or the search page.
 
-## Blockers During Development
+## Blockers During Development but Eventually Solved
 
 ### Updating the Winners and Losers cards in real time.
 
