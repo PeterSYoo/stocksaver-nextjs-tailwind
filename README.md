@@ -6,6 +6,12 @@ This app consumes Finnhub's Stock API. It's currently using the free tier which 
 
 App Link - https://tickersaver.vercel.app/
 
+**If you do not wish to sign up, here is a provided username and password.**
+
+**Username:** apple
+
+**Password:** Abcd1234!
+
 ## Screenshots
 
 ![Sign-Up](https://i.imgur.com/6K6UT3W.png)
