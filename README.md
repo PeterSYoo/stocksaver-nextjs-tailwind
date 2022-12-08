@@ -66,10 +66,9 @@ App Link - https://tickersaver.vercel.app/
 
 ## Blockers During Development
 
-### Updating the Winners and Losers card in real time.
+### Updating the Winners and Losers cards in real time.
 
-- The state object that the Winners and Losers were doing their calculations from was not removing the nested object that contained the deleted ticker prop. This was due to the state holding previous state data and appending new data, so the state was never being replaced.
-- In order to solve this there were several steps involved.
+The state object that the Winners and Losers were doing their calculations from was not removing the nested object that contained the deleted ticker prop. This was due to the state holding previous state data and appending new data, so the state was never being replaced. In order to solve this there were several steps involved.
 
 1.  We had to place the deleted ticker symbol in a state every time we deleted a card.
 2.  We had to compare the deleted ticker symbol with the state that the Winners and Losers calculation was based off of.
