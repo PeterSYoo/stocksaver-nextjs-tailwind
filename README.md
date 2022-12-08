@@ -8,9 +8,10 @@ App Link - https://tickersaver.vercel.app/
 
 **If you do not wish to sign up, here is a provided username and password.**
 
-**Username:** apple
-
-**Password:** Abcd1234!
+```
+Username: apple
+Password: Abcd1234!
+```
 
 ## Screenshots
 
