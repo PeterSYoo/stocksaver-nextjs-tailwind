@@ -68,10 +68,10 @@ App Link - https://tickersaver.vercel.app/
 
 ### Updating the Winners and Losers card in real time.
 
-- The state object that Winners and Losers were doing their calculations from was not removing the nested object that contained the deleted ticker prop. This was due to the state holding prev state data and appending new data, so the state was never being replaced with the fresh data.
+- The state object that the Winners and Losers were doing their calculations from was not removing the nested object that contained the deleted ticker prop. This was due to the state holding previous state data and appending new data, so the state was never being replaced.
 - In order to solve this there were several steps involved.
 
-1.  We had to place the deleted ticker symbol in a state everytime we deleted a card.
+1.  We had to place the deleted ticker symbol in a state every time we deleted a card.
 2.  We had to compare the deleted ticker symbol with the state that the Winners and Losers calculation was based off of.
-3.  Inside a useEffect hook, we 1st check if the deleted ticker state isn't an empty string. Then we create a temp variable holding the state object that the Winner and Loser calculations was based off of. We then create another temp variable that holds an empty array. We do a for loop that checks to see if the deleted ticker exists in any of the iterated objects. If it doesn't exist then push those objects to the variable holding the empty array.
+3.  Inside a useEffect hook, we 1st check if the deleted ticker state isn't an empty string. Then we create a temp variable holding the state object that the Winner and Loser calculations were based off of. We then create another temp variable that holds an empty array. We do a for loop that checks to see if the deleted ticker exists in any of the iterated objects. If it doesn't exist, then push those objects to the variable holding the empty array.
 4.  Once the for loop is done, we set the state that the Winners and Losers is based off of with the new array. And we also set the state that holds the deleted ticker to an empty string so it won't trigger the for loop to keep triggering.
