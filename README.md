@@ -29,16 +29,20 @@ App Link - https://tickersaver.vercel.app/
 
 ## App Features
 
-All pages are built responsively for mobile and desktop.
-
+- All pages are built responsively for mobile and desktop.
+- Grabs company and company quote information and displays them as cards.
+- Finds percentage change based off calculations from prev day close price and current price.
+- Updates Winners and Losers in real time.
 - Sign-Up Page
   - Form built using Formik.
   - Form validations through Yup.
+  - Grays out Sign-Up button if any validation errors occur.
   - Triggers modals based on server response when submitting the form.
   - If form successfully submits, then creates a user document in Mongo using Mongoose schema, then forwards the user to the login page.
 - Login Page
   - Form built using Formik.
   - Form validations through Yup.
+  - Grays out Login button if any validation errors occur.
   - Triggers modals based on server response when submitting the form.
   - If form successfully submits, forwards the user to the Dashboard page.
 - Dashboard Page
