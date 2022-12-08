@@ -8,7 +8,7 @@ App Link - https://tickersaver.vercel.app/
 
 ## Screenshots
 
-![Sign-Up](https://i.imgur.com/YTuD61A.png)
+![Sign-Up](https://i.imgur.com/6K6UT3W.png)
 ![Dashboard](https://i.imgur.com/zpLvC8a.png)
 ![Search](https://i.imgur.com/NhsCR5Q.png)
 
