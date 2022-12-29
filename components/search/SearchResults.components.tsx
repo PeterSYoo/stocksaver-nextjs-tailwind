@@ -103,7 +103,7 @@ export const SearchResults = ({
                           alt={resultCompany.name}
                           width={56}
                           height={56}
-                          className="rounded-full cursor-pointer group-hover:w-16 duration-300 ease-in-out"
+                          className="rounded-full cursor-pointer duration-300 ease-in-out"
                         />
                       </>
                     ) : (
@@ -143,18 +143,20 @@ export const SearchResults = ({
               {buttonIsDisabled ? (
                 <button
                   onClick={() => setButtonIsDisabled(false)}
-                  className="bg-blue-700 w-14 h-20 md:w-20 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out flex justify-center items-center"
+                  className="bg-blue-700 w-14 h-20 md:w-20 rounded-br-3xl rounded-tl-3xl duration-200 ease-in-out flex justify-center items-center group-hover:bg-black dark:group-hover:bg-white"
                 >
-                  <span className="text-3xl md:text-4xl text-white group-hover:animate-bounce ease-in-out">
+                  <span className="text-2xl md:text-4xl text-white dark:group-hover:text-black ease-in-out">
                     <FiChevronLeft />
                   </span>
                 </button>
               ) : (
                 <button
                   onClick={handleAdd}
-                  className="bg-blue-700 ml-0 h-20 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
+                  className="bg-blue-700 ml-0 h-20 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-200 ease-in-out dark:group-hover:bg-white group-hover:bg-black"
                 >
-                  <span className="text-4xl md:text-5xl text-white">+</span>
+                  <span className="text-4xl md:text-5xl text-white dark:group-hover:text-black">
+                    +
+                  </span>
                 </button>
               )}
             </div>

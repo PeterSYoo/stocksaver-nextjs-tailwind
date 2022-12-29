@@ -145,7 +145,7 @@ export const TickerCard = ({
                               alt={company.name}
                               width={50}
                               height={50}
-                              className="rounded-full cursor-pointer group-hover:w-14 duration-200 ease-in-out"
+                              className="rounded-full cursor-pointer duration-200 ease-in-out"
                             />
                           </>
                         ) : (
@@ -184,18 +184,20 @@ export const TickerCard = ({
                       {buttonIsDisabled ? (
                         <button
                           onClick={() => setButtonIsDisabled(false)}
-                          className="bg-red-600 w-14 h-12 md:w-16 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                          className="bg-red-600 w-14 h-12 md:w-16 rounded-br-3xl rounded-tl-3xl duration-200 ease-in-out group-hover:bg-black dark:group-hover:bg-white"
                         >
-                          <span className="text-3xl text-white flex justify-center items-center group-hover:animate-bounce">
+                          <span className="text-2xl text-white dark:group-hover:text-black flex justify-center items-center">
                             <FiChevronLeft />
                           </span>
                         </button>
                       ) : (
                         <button
                           onClick={() => handleDelete(id, ticker)}
-                          className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
+                          className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-200 ease-in-out dark:group-hover:bg-white group-hover:bg-black"
                         >
-                          <span className="text-4xl text-white">-</span>
+                          <span className="text-4xl text-white dark:group-hover:text-black">
+                            -
+                          </span>
                         </button>
                       )}
                     </div>
