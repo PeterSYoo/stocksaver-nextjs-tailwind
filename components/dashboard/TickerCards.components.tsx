@@ -40,9 +40,9 @@ type TickerCardsProps = {
   tickers: StockData;
   refetch: () => void;
   localTickers: LocalTickers[];
-  setDeletedTicker: () => void;
-  setWinner: () => void;
-  setLoser: () => void;
+  setDeletedTicker: (arg0: string) => void;
+  setWinner: (arg0: StockData | {}) => void;
+  setLoser: (arg0: StockData | {}) => void;
 };
 
 export const TickerCards = ({

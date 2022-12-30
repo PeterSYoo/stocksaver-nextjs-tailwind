@@ -17,13 +17,40 @@ type Price = {
   t: number;
 };
 
+type StockData = {
+  company: {
+    country: string;
+    currency: string;
+    exchange: string;
+    finnhubIndustry: string;
+    ipo: string;
+    logo: string;
+    marketCapitalization: number;
+    name: string;
+    phone: string;
+    shareOutstanding: number;
+    ticker: string;
+    weburl: string;
+  };
+  price: {
+    c: number;
+    d: number;
+    dp: number;
+    h: number;
+    l: number;
+    o: number;
+    pc: number;
+    t: number;
+  };
+};
+
 type TickerCardProps = {
   ticker: string;
   id: string;
   refetch: () => void;
   setDeletedTicker: (arg0: string) => void;
-  setWinner: (arg0: {}) => void;
-  setLoser: (arg0: {}) => void;
+  setWinner: (arg0: StockData | {}) => void;
+  setLoser: (arg0: StockData | {}) => void;
 };
 
 export const TickerCard = ({

@@ -74,10 +74,10 @@ type UserTickersResponse = {
 const DashboardPage = ({ session }: DashboardPageProps) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<Company[]>([]);
-  const [winner, setWinner] = useState<Company>();
-  const [loser, setLoser] = useState<Company>();
-  const [localTickers, setLocalTickers] = useState<Ticker>();
-  const [deletedTicker, setDeletedTicker] = useState('');
+  const [winner, setWinner] = useState<any>();
+  const [loser, setLoser] = useState<any>();
+  const [localTickers, setLocalTickers] = useState<any>();
+  const [deletedTicker, setDeletedTicker] = useState<string>('');
 
   const user = useQuery(['user'], () => getUser(session?.user?.id));
 
