@@ -3,25 +3,18 @@ import Image from 'next/image';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { FiChevronLeft } from 'react-icons/fi';
 
-interface Results {
-  results: any;
-  error: any;
-}
-
-interface Result {
-  price: number;
-  previous_close_price: number;
-  ticker: string;
-  name: string;
-}
+type SearchResultsProps = {
+  resultCompany: any;
+  resultPrice: any;
+  handleAdd: any;
+};
 
 export const SearchResults = ({
   resultCompany,
   resultPrice,
   handleAdd,
-  isLoading,
 }: any) => {
-  const [buttonIsDisabled, setButtonIsDisabled] = useState<any>(true);
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(true);
 
   const perIncrease = (a: number, b: number) => {
     let percent;

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const DB_URL: any = process.env.NEXT_PUBLIC_MONGODB_URL_USERDB;
+const DB_URL: string = process.env.NEXT_PUBLIC_MONGODB_URL_USERDB || '';
 
 const usersConnect = async () => {
   try {

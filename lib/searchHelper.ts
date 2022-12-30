@@ -1,7 +1,12 @@
-const APP_URL: any = process.env.NEXT_PUBLIC_APP_URL;
+const APP_URL: string = process.env.NEXT_PUBLIC_APP_URL || '';
+
+type FormData = {
+  tickers: string;
+  user: string;
+};
 
 // POST a new search
-export const addSearch = async (formData: any) => {
+export const addSearch = async (formData: FormData) => {
   try {
     const Options = {
       method: 'POST',

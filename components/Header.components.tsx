@@ -15,7 +15,7 @@ const Guest = () => {
   return (
     <>
       <header className={`${playfair.variable} font-serif`}>
-        <div className="bg-white shadow shadow-gray-500 dark:bg-dark dark:shadow-none">
+        <div className="bg-transparent dark:bg-transparent dark:shadow-none">
           <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between pt-7 md:mb-10 pb-2">
             <Link href="/">
               <button>
@@ -48,7 +48,7 @@ const LoggedIn = () => {
   return (
     <>
       <header className={`${playfair.variable} font-serif`}>
-        <div className="bg-white shadow shadow-gray-500 dark:bg-dark dark:shadow-none">
+        <div className="bg-transparent dark:bg-transparent dark:shadow-none">
           <div className="min-w-screen mx-auto px-8 max-w-[375px] md:max-w-[768px] flex justify-between pt-7 md:mb-10 pb-2">
             <Link href="/">
               <button>
@@ -72,7 +72,7 @@ const LoggedIn = () => {
 };
 
 export const Header = () => {
-  const { status }: any = useSession();
+  const { status }: { status: string } = useSession();
 
   if (status === 'loading') {
     return (

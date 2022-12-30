@@ -11,10 +11,6 @@ import { SearchSuccessModal } from './SearchSuccessModal.components';
 import { FiX } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-interface Values {
-  search: any;
-}
-
 const SearchSchema = Yup.object().shape({
   search: Yup.string()
     .trim('The searched ticker cannot include leading and trailing spaces')
@@ -27,12 +23,12 @@ const SearchSchema = Yup.object().shape({
 
 export const SearchInput = () => {
   const [apiKey] = useState(`${process.env.NEXT_PUBLIC_API_KEY}`);
-  const [resultPrice, setResultPrice] = useState({});
+  const [resultPrice, setResultPrice] = useState<any>({});
   const [resultCompany, setResultCompany] = useState<any>({});
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>();
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>();
 
-  const { data: session }: any = useSession();
+  const { data: sessionState }: any = useSession();
 
   const closeErrorModal = () => {
     setIsErrorModalOpen(false);
@@ -55,12 +51,8 @@ export const SearchInput = () => {
       const jsonPrice = await responsePrice.json();
 
       if (Object.keys(jsonCompany).length !== 0) {
-        // console.log(jsonPrice);
-        // console.log(jsonCompany);
         setResultCompany(jsonCompany);
         setResultPrice(jsonPrice);
-        // console.log(resultCompany, 'company');
-        // console.log(resultPrice, 'price');
       } else {
         setIsErrorModalOpen(true);
       }
@@ -74,7 +66,7 @@ export const SearchInput = () => {
   const handleAdd = async () => {
     await addMutateAsync({
       tickers: resultCompany.ticker,
-      user: session?.user?.id,
+      user: sessionState?.user?.id,
     });
     setResultCompany({});
     // router.push('/dashboard');
@@ -86,8 +78,8 @@ export const SearchInput = () => {
   const { mutateAsync: addMutateAsync, isLoading: addIsLoading } =
     useMutation(addSearch);
 
-  const onSubmit = async (values: Values) => {
-    await mutateAsync(values.search);
+  const onSubmit = async () => {
+    await mutateAsync();
     formik.resetForm();
   };
 
@@ -107,10 +99,7 @@ export const SearchInput = () => {
             <SearchErrorModal closeErrorModal={closeErrorModal} />
           )}
           {isSuccessModalOpen && (
-            <SearchSuccessModal
-              open={isSuccessModalOpen}
-              closeSuccessModal={closeSuccessModal}
-            />
+            <SearchSuccessModal closeSuccessModal={closeSuccessModal} />
           )}
         </>
       ) : null}

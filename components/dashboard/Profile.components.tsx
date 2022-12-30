@@ -7,11 +7,61 @@ import { WinnersCard } from './WinnersCard.components';
 import { LosersCard } from './LosersCard.components';
 import { LoaderSpinner2 } from '../LoaderSpinner2.components';
 
+type Tickers = {
+  _id: string;
+  user: string;
+  tickers: string;
+  __v: number;
+};
+
+type User = {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  __v: number;
+};
+
+type StockData = {
+  company: {
+    country: string;
+    currency: string;
+    exchange: string;
+    finnhubIndustry: string;
+    ipo: string;
+    logo: string;
+    marketCapitalization: number;
+    name: string;
+    phone: string;
+    shareOutstanding: number;
+    ticker: string;
+    weburl: string;
+  };
+  price: {
+    c: number;
+    d: number;
+    dp: number;
+    h: number;
+    l: number;
+    o: number;
+    pc: number;
+    t: number;
+  };
+};
+
+type ProfileProps = {
+  user: User;
+  winner: StockData;
+  loser: StockData;
+  tickers: Tickers[];
+};
+
 const playfair = Playfair_Display({
   subsets: ['latin'],
 });
 
-export const Profile = ({ user, winner, loser, tickers }: any) => {
+export const Profile = ({ user, winner, loser, tickers }: ProfileProps) => {
+  console.log(tickers);
   const [imageSrc, setImageSrc] = useState<any>();
   const [uploadData, setUploadData] = useState<any>();
   const [tempUser, setTempUser] = useState<any>();

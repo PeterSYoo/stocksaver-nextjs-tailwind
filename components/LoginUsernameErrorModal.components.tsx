@@ -1,6 +1,12 @@
 import { FaUser } from 'react-icons/fa';
 
-export const LoginUsernameErrorModal = ({ closeUsernameErrorModal }: any) => {
+type LoginUsernameErrorModalProps = {
+  closeUsernameErrorModal: () => void;
+};
+
+export const LoginUsernameErrorModal = ({
+  closeUsernameErrorModal,
+}: LoginUsernameErrorModalProps) => {
   return (
     <>
       <div className="fixed top-0 left-0 w-full h-screen z-50 bg-gray-300 bg-opacity-80 flex justify-center pt-40 dark:bg-gray-800 dark:bg-opacity-80">

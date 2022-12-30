@@ -14,13 +14,6 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
 
-interface Values {
-  username: String;
-  email: String;
-  password: String;
-  cpassword: String;
-}
-
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'too short!')
@@ -43,7 +36,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isUsernameErrorModalOpen, setIsUsernameErrorModalOpen] =
     useState<boolean>();
   const [isEmailErrorModalOpen, setIsEmailErrorModalOpen] = useState<boolean>();
@@ -87,8 +80,8 @@ export const Signup = () => {
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
 
-  const onSubmit = async (values: any) => {
-    await mutateAsync(values);
+  const onSubmit = async () => {
+    await mutateAsync();
   };
 
   const formik = useFormik({

@@ -1,9 +1,10 @@
-const API_KEY: any = process.env.NEXT_PUBLIC_API_KEY;
-const APP_URL: any = process.env.NEXT_PUBLIC_APP_URL;
+const API_KEY: string = process.env.NEXT_PUBLIC_API_KEY || '';
+const APP_URL: string = process.env.NEXT_PUBLIC_APP_URL || '';
 
 // Get ticker price object from API
-export const getPrice = async (ticker: any) => {
+export const getPrice = async (ticker: string) => {
   try {
+    console.log(ticker);
     const response = await fetch(
       `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${API_KEY}`
     );
@@ -18,7 +19,7 @@ export const getPrice = async (ticker: any) => {
 };
 
 // Get ticker company information object from API
-export const getCompany = async (ticker: any) => {
+export const getCompany = async (ticker: string) => {
   try {
     const response = await fetch(
       `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${API_KEY}`

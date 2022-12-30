@@ -1,7 +1,13 @@
 import { useRouter } from 'next/router';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
-export const SearchSuccessModal = ({ open, closeSuccessModal }: any) => {
+type SearchSuccessModalProps = {
+  closeSuccessModal: () => void;
+};
+
+export const SearchSuccessModal = ({
+  closeSuccessModal,
+}: SearchSuccessModalProps) => {
   const router = useRouter();
 
   return (

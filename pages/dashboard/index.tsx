@@ -10,12 +10,73 @@ import { LoaderSpinner } from '../../components/LoaderSpinner.components';
 import { getUserTickers } from '../../lib/userTickersHelper';
 import { getUser } from '../../lib/usersHelper';
 
-const DashboardPage = ({ session }: any) => {
+type Ticker = {
+  _id: string;
+  user: string;
+  tickers: string;
+  __v: number;
+};
+
+type Price = {
+  c: number;
+  d: number;
+  dp: number;
+  h: number;
+  l: number;
+  o: number;
+  pc: number;
+  t: number;
+};
+
+type Information = {
+  country: string;
+  currency: string;
+  exchange: string;
+  finnhubIndustry: string;
+  ipo: string;
+  logo: string;
+  marketCapitalization: number;
+  name: string;
+  phone: string;
+  shareOutstanding: number;
+  ticker: string;
+  weburl: string;
+};
+
+type Company = {
+  company: Information;
+  price: Price;
+};
+
+type User = {
+  email: string;
+  image: string;
+  id: string;
+};
+
+type Session = {
+  user: User;
+  expires: string;
+};
+
+type DashboardPageProps = {
+  session: Session;
+};
+
+type UserTickersResponse = {
+  data: any;
+  refetch: () => void;
+  isLoading: boolean;
+  isError: boolean;
+  error?: any;
+};
+
+const DashboardPage = ({ session }: DashboardPageProps) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
-  const [company, setCompany] = useState<any>([{}]);
-  const [winner, setWinner] = useState<any>({});
-  const [loser, setLoser] = useState<any>({});
-  const [localTickers, setLocalTickers] = useState<any>([]);
+  const [company, setCompany] = useState<Company[]>([]);
+  const [winner, setWinner] = useState<Company>();
+  const [loser, setLoser] = useState<Company>();
+  const [localTickers, setLocalTickers] = useState<Ticker>();
   const [deletedTicker, setDeletedTicker] = useState('');
 
   const user = useQuery(['user'], () => getUser(session?.user?.id));
@@ -26,7 +87,11 @@ const DashboardPage = ({ session }: any) => {
     isLoading,
     isError,
     error,
-  }: any = useQuery(['userTickers'], () => getUserTickers(session.user.id));
+  }: UserTickersResponse = useQuery(['userTickers'], () =>
+    getUserTickers(session.user.id)
+  );
+
+  console.log(userTickers);
 
   useEffect(() => {
     setLocalTickers(userTickers);
@@ -34,9 +99,9 @@ const DashboardPage = ({ session }: any) => {
 
   useEffect(() => {
     if (userTickers !== undefined) {
-      const getData = async (userTickers: any) => {
+      const getData = async (userTickers: Ticker[]) => {
         return await Promise.all(
-          userTickers.map(async (ticker: any) => {
+          userTickers.map(async (ticker: Ticker) => {
             try {
               const responseCompany = await fetch(
                 `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker.tickers}&token=${apiKey}`
@@ -48,7 +113,7 @@ const DashboardPage = ({ session }: any) => {
               const jsonPrice = await responsePrice.json();
 
               if (jsonPrice && jsonCompany) {
-                setCompany((current: any) => [
+                setCompany((current: Company[]) => [
                   ...current,
                   { company: jsonCompany, price: jsonPrice },
                 ]);
@@ -70,15 +135,15 @@ const DashboardPage = ({ session }: any) => {
   useEffect(() => {
     if (company !== undefined) {
       let newArray = company.filter(
-        (value: any) => Object.keys(value).length !== 0
+        (value: Company) => Object.keys(value).length !== 0
       );
 
       if (newArray.length !== 0) {
-        let largestObject = newArray.reduce((prev: any, curr: any) =>
+        let largestObject = newArray.reduce((prev: Company, curr: Company) =>
           prev?.price?.dp > curr?.price?.dp ? prev : curr
         );
 
-        let smallestObject = newArray.reduce((prev: any, curr: any) =>
+        let smallestObject = newArray.reduce((prev: Company, curr: Company) =>
           prev?.price?.dp < curr?.price?.dp ? prev : curr
         );
 

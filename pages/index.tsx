@@ -4,7 +4,7 @@ import { Signup } from '../components/Signup.components';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
 
-const Home = ({ session }: any) => {
+const Home = () => {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {

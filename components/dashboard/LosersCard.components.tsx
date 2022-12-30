@@ -2,7 +2,49 @@ import Image from 'next/image';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { FaSmileBeam } from 'react-icons/fa';
 
-export const LosersCard = ({ loser }: any) => {
+type Price = {
+  c: number;
+  d: number;
+  dp: number;
+  h: number;
+  l: number;
+  o: number;
+  pc: number;
+  t: number;
+};
+
+type StockData = {
+  company: {
+    country: string;
+    currency: string;
+    exchange: string;
+    finnhubIndustry: string;
+    ipo: string;
+    logo: string;
+    marketCapitalization: number;
+    name: string;
+    phone: string;
+    shareOutstanding: number;
+    ticker: string;
+    weburl: string;
+  };
+  price: {
+    c: number;
+    d: number;
+    dp: number;
+    h: number;
+    l: number;
+    o: number;
+    pc: number;
+    t: number;
+  };
+};
+
+type LosersCardProps = {
+  loser: StockData;
+};
+
+export const LosersCard = ({ loser }: LosersCardProps) => {
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -17,7 +59,7 @@ export const LosersCard = ({ loser }: any) => {
     return percent.toFixed(3);
   };
 
-  const percChange = (price: any) => {
+  const percChange = (price: Price) => {
     let pos;
     let neg;
 
@@ -38,7 +80,7 @@ export const LosersCard = ({ loser }: any) => {
     }
   };
 
-  const dayChange = (price: any) => {
+  const dayChange = (price: Price) => {
     let pos = price?.c - price?.pc;
     let neg = price?.pc - price?.c;
     let posString = pos.toString().substring(0, 7);
@@ -55,7 +97,7 @@ export const LosersCard = ({ loser }: any) => {
     }
   };
 
-  const checkIfLoser = (price: any) => {
+  const checkIfLoser = (price: Price) => {
     let pos;
     let neg;
 
@@ -154,7 +196,7 @@ export const LosersCard = ({ loser }: any) => {
       neg = perIncrease(price?.c, price?.pc);
       return (
         <>
-          {price?.error ? (
+          {!price ? (
             <>
               <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
                 <div className="flex justify-center items-center font-bold h-full gap-3">

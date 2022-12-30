@@ -2,7 +2,50 @@ import Image from 'next/image';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { FaSadTear } from 'react-icons/fa';
 
-export const WinnersCard = ({ winner }: any) => {
+type Price = {
+  c: number;
+  d: number;
+  dp: number;
+  h: number;
+  l: number;
+  o: number;
+  pc: number;
+  t: number;
+};
+
+type StockData = {
+  company: {
+    country: string;
+    currency: string;
+    exchange: string;
+    finnhubIndustry: string;
+    ipo: string;
+    logo: string;
+    marketCapitalization: number;
+    name: string;
+    phone: string;
+    shareOutstanding: number;
+    ticker: string;
+    weburl: string;
+  };
+  price: {
+    c: number;
+    d: number;
+    dp: number;
+    h: number;
+    l: number;
+    o: number;
+    pc: number;
+    t: number;
+  };
+};
+
+type WinnersCardProps = {
+  winner: StockData;
+};
+
+export const WinnersCard = ({ winner }: WinnersCardProps) => {
+  console.log(winner);
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -17,7 +60,7 @@ export const WinnersCard = ({ winner }: any) => {
     return percent.toFixed(3);
   };
 
-  const percChange = (price: any) => {
+  const percChange = (price: Price) => {
     let pos;
     let neg;
 
@@ -38,7 +81,7 @@ export const WinnersCard = ({ winner }: any) => {
     }
   };
 
-  const dayChange = (price: any) => {
+  const dayChange = (price: Price) => {
     let pos = price?.c - price?.pc;
     let neg = price?.pc - price?.c;
     let posString = pos.toString().substring(0, 7);
@@ -55,7 +98,7 @@ export const WinnersCard = ({ winner }: any) => {
     }
   };
 
-  const checkIfWinner = (price: any) => {
+  const checkIfWinner = (price: Price) => {
     let pos;
     let neg;
 
@@ -117,7 +160,7 @@ export const WinnersCard = ({ winner }: any) => {
                     Top Winner of the Day
                   </div>
                   <div className="flex flex-col h-full justify-center items-center gap-1">
-                    {winner?.company?.log ? (
+                    {winner?.company?.logo ? (
                       <Image
                         src={winner?.company?.logo}
                         alt={winner?.company?.name}
@@ -152,7 +195,7 @@ export const WinnersCard = ({ winner }: any) => {
       neg = perIncrease(price?.c, price?.pc);
       return (
         <>
-          {price?.error ? (
+          {!price ? (
             <>
               <div className="bg-gray-200 h-56 rounded-3xl px-6 py-4 shadow-md shadow-gray-500 dark:shadow-dark3xl flex flex-col md:w-72 dark:bg-black">
                 <div className="flex justify-center items-center font-bold h-full gap-3">

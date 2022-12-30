@@ -14,10 +14,11 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { HiFingerPrint } from 'react-icons/hi';
 import { BiUser } from 'react-icons/bi';
 
-interface Values {
-  username: string;
-  password: string;
-}
+type SignInResponse = {
+  error?: string;
+  ok?: boolean;
+  url?: string | null;
+};
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -52,7 +53,7 @@ export const Login = () => {
   const router = useRouter();
 
   const handleSubmit = async () => {
-    const status: any = await signIn('credentials', {
+    const status: SignInResponse | undefined = await signIn('credentials', {
       redirect: false,
       username: formik.values.username,
       password: formik.values.password,
@@ -65,13 +66,13 @@ export const Login = () => {
       setIsPasswordErrorModalOpen(true);
     }
 
-    if (status?.ok) router.push(status?.url!);
+    if (status && status?.ok) router.push(status?.url!);
   };
 
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
 
-  const onSubmit = async (values: any) => {
-    await mutateAsync(values);
+  const onSubmit = async () => {
+    await mutateAsync();
   };
 
   const formik = useFormik({

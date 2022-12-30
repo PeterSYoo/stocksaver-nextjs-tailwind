@@ -6,6 +6,26 @@ import { LoaderSpinner } from '../LoaderSpinner.components';
 import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { FiChevronLeft } from 'react-icons/fi';
 
+type Price = {
+  c: number;
+  d: number;
+  dp: number;
+  h: number;
+  l: number;
+  o: number;
+  pc: number;
+  t: number;
+};
+
+type TickerCardProps = {
+  ticker: string;
+  id: string;
+  refetch: () => void;
+  setDeletedTicker: (arg0: string) => void;
+  setWinner: (arg0: {}) => void;
+  setLoser: (arg0: {}) => void;
+};
+
 export const TickerCard = ({
   ticker,
   id,
@@ -13,12 +33,12 @@ export const TickerCard = ({
   setDeletedTicker,
   setWinner,
   setLoser,
-}: any) => {
+}: TickerCardProps) => {
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<any>({});
   const [price, setPrice] = useState<any>({});
   const [key, setKey] = useState('');
-  const [buttonIsDisabled, setButtonIsDisabled] = useState<any>(true);
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(true);
 
   const perIncrease = (a: number, b: number) => {
     let percent;
@@ -34,7 +54,7 @@ export const TickerCard = ({
     return percent.toFixed(3);
   };
 
-  const percChange = (price: any) => {
+  const percChange = (price: Price) => {
     let pos;
     let neg;
 
@@ -55,7 +75,7 @@ export const TickerCard = ({
     }
   };
 
-  const dayChange = (price: any) => {
+  const dayChange = (price: Price) => {
     let pos = price.c - price.pc;
     let neg = price.pc - price.c;
     let posString = pos.toString().substring(0, 7);
@@ -83,7 +103,7 @@ export const TickerCard = ({
   const { mutateAsync, isLoading } = useMutation(deleteTicker);
 
   useEffect(() => {
-    const getData = async (ticker: any) => {
+    const getData = async (ticker: string) => {
       try {
         const responseCompany = await fetch(
           `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${apiKey}`
@@ -211,7 +231,10 @@ export const TickerCard = ({
         </>
       ) : (
         <>
-          <div className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-80 justify-between md:w-64 md:mx-auto">
+          <div
+            onClick={() => setButtonIsDisabled(false)}
+            className="bg-gray-200 rounded-3xl shadow-md shadow-gray-500 dark:bg-black dark:shadow-dark3xl flex flex-col gap-10 md:gap-0 md:h-80 justify-between md:w-64 md:mx-auto cursor-pointer group"
+          >
             <div className="flex justify-center items-center h-full">
               <LoaderSpinnerSearch />
             </div>
@@ -223,18 +246,20 @@ export const TickerCard = ({
                   {buttonIsDisabled ? (
                     <button
                       onClick={() => setButtonIsDisabled(false)}
-                      className="bg-red-600 w-14 h-12 md:w-10 rounded-br-3xl rounded-tl-3xl duration-300 ease-in-out"
+                      className="bg-red-600 w-14 h-12 md:w-16 rounded-br-3xl rounded-tl-3xl duration-200 ease-in-out group-hover:bg-black dark:group-hover:bg-white"
                     >
-                      <span className="text-2xl text-white flex justify-center items-center">
+                      <span className="text-2xl text-white dark:group-hover:text-black flex justify-center items-center">
                         <FiChevronLeft />
                       </span>
                     </button>
                   ) : (
                     <button
                       onClick={() => handleDelete(id, ticker)}
-                      className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-300 ease-in-out"
+                      className="bg-red-600 ml-0 h-12 rounded-bl-3xl rounded-br-3xl rounded-tl-none w-full duration-200 ease-in-out dark:group-hover:bg-white group-hover:bg-black"
                     >
-                      <span className="text-xl text-white">-</span>
+                      <span className="text-4xl text-white dark:group-hover:text-black">
+                        -
+                      </span>
                     </button>
                   )}
                 </div>
