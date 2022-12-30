@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { Signup } from '../components/Signup.components';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
+import { Signup } from '../components/Signup.components';
 
 const Home = () => {
   const [hydrated, setHydrated] = useState(false);

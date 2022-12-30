@@ -8,8 +8,8 @@ import { LoaderSpinnerSearch } from '../LoaderSpinnerSearch.components';
 import { SearchErrorModal } from './SearchErrorModal.components';
 import { SearchResults } from './SearchResults.components';
 import { SearchSuccessModal } from './SearchSuccessModal.components';
-import { FiX } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { FiX } from 'react-icons/fi';
 
 const SearchSchema = Yup.object().shape({
   search: Yup.string()

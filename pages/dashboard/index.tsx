@@ -3,12 +3,12 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
+import { getUser } from '../../lib/usersHelper';
 import { Profile } from '../../components/dashboard/Profile.components';
 import { TickerCards } from '../../components/dashboard/TickerCards.components';
 import { WinnersLosers } from '../../components/dashboard/WinnersLosers.components';
 import { LoaderSpinner } from '../../components/LoaderSpinner.components';
 import { getUserTickers } from '../../lib/userTickersHelper';
-import { getUser } from '../../lib/usersHelper';
 
 type Ticker = {
   _id: string;

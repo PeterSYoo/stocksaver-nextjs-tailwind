@@ -10,9 +10,9 @@ import { LoaderSpinner2 } from './LoaderSpinner2.components';
 import { SignupUsernameErrorModal } from './SignupUsernameErrorModal.components';
 import { SignupEmailErrorModal } from './SignupEmailErrorModal';
 import { BiUser } from 'react-icons/bi';
+import { HiFingerPrint } from 'react-icons/hi';
 import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { HiFingerPrint } from 'react-icons/hi';
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()

@@ -10,9 +10,9 @@ import { useTheme } from 'next-themes';
 import { LoaderSpinner2 } from './LoaderSpinner2.components';
 import { LoginUsernameErrorModal } from './LoginUsernameErrorModal.components';
 import { LoginPasswordErrorModal } from './LoginPasswordErrorModal.components';
-import { RiLockPasswordLine } from 'react-icons/ri';
-import { HiFingerPrint } from 'react-icons/hi';
 import { BiUser } from 'react-icons/bi';
+import { HiFingerPrint } from 'react-icons/hi';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 type SignInResponse = {
   error?: string;
