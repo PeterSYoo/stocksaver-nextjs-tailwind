@@ -37,6 +37,7 @@ Password: Abcd1234!
 ## App Features
 
 - The app is responsive on both mobile and desktop devices.
+- Implemented secure server-side routing to protect user access and redirect as needed.
 - It includes a light/dark theme.
 - The app persists data by saving users to MongoDB, storing ticker symbols in a "tickers" collection that references the current logged-in user's document, and making API calls to Finnhub based on the ticker symbols in the "tickers" collection.
 - It retrieves company information and company quote data from Finnhub and displays them as cards.
