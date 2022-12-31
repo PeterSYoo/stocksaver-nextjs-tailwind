@@ -15,9 +15,9 @@ Password: Abcd1234!
 
 ## Screenshots
 
-![Sign-Up](https://i.imgur.com/6K6UT3W.png)
-![Dashboard](https://i.imgur.com/zpLvC8a.png)
-![Search](https://i.imgur.com/NhsCR5Q.png)
+![Sign-Up](https://i.imgur.com/O23M41A.png)
+![Dashboard](https://i.imgur.com/UVltCrx.png)
+![Search](https://i.imgur.com/iDALrNu.png)
 
 ## Technologies Used
 
@@ -36,14 +36,14 @@ Password: Abcd1234!
 
 ## App Features
 
-- The app is responsive on both mobile and desktop devices.
+- Responsive on both mobile and desktop devices.
 - Implemented secure server-side routing to protect user access and redirect as needed.
-- It includes a light/dark theme.
-- The app persists data by saving users to MongoDB, storing ticker symbols in a "tickers" collection that references the current logged-in user's document, and making API calls to Finnhub based on the ticker symbols in the "tickers" collection.
-- It retrieves company information and company quote data from Finnhub and displays them as cards.
-- The app calculates the daily percentage change based on the previous day's close price and the current price.
-- It updates the "Winners" and "Losers" lists in real time.
-- The app updates the profile image in real time.
+- Includes a light/dark theme.
+- Persists data by saving users to MongoDB, storing ticker symbols in a "tickers" collection that references the current logged-in user's document, and making API calls to Finnhub based on the ticker symbols in the "tickers" collection.
+- Retrieves company information and company quote data from Finnhub and displays them as cards.
+- Calculates the daily percentage change based on the previous day's close price and the current price.
+- Updates the "Winners" and "Losers" lists in real time.
+- Updates the profile image in real time.
 - Users can upload a profile image to Cloudinary and update the current logged-in user's document with the Cloudinary URL. The app sets the state that holds the profile image URL every time a PUT request is made and on initial load.
 
 ---
