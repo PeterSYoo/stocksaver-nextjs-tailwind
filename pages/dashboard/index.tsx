@@ -192,16 +192,15 @@ const DashboardPage = ({ session }: DashboardPageProps) => {
           </div>
           <div className="bg-white shadow-md shadow-gray-500 rounded-3xl px-10 py-6 dark:bg-dark max-w-[500px] mx-auto md:max-w-[768px] md:mx-auto dark:shadow-dark3xl">
             <p className="text-sm">
-              This app consumes Finnhub&apos;s Stock API. It&apos;s currently
-              using the free tier which only allows 60 queries per minute. If
-              you see any errors it is because you or someone else has used up
-              the allotted 60 queries and will need to wait 1 minute for the
-              cooldown to refresh. Each card represents 1 query since the free
-              tier does not offer an API endpoint that allows for multiple stock
-              symbols as a parameter. So each render is pretty expensive. If
-              only a single card is not rendering, that means the API has
-              blocked that data from being available to us through the free
-              tier.
+              This app consumes the Finnhub Stock API, which is currently using
+              the free tier that allows only 60 queries per minute. If you
+              encounter errors, it may be because you or someone else has used
+              up the allotted queries and must wait for the cooldown period to
+              refresh. Each card represents one query, as the free tier does not
+              offer an API endpoint that allows multiple stock symbols as a
+              parameter. Therefore, each render is expensive. If a single card
+              is not rendering, it means that the API has blocked the data from
+              being available through the free tier.
             </p>
           </div>
           <TickerCards
