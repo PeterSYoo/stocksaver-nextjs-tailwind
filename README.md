@@ -19,6 +19,11 @@ Password: Abcd1234!
 ![Dashboard](https://i.imgur.com/UVltCrx.png)
 ![Search](https://i.imgur.com/iDALrNu.png)
 
+## Wireframe
+
+![figma](https://i.imgur.com/IeV4RtS.png)
+https://www.figma.com/file/wHm2hDPB9OzMQ5fIwtTAZo/Stocksaver?t=3IhUZzxMuo8z6sZF-0
+
 ## Technologies Used
 
 - TypeScript
