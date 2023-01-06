@@ -19,6 +19,10 @@ Password: Abcd1234!
 ![Dashboard](https://i.imgur.com/UVltCrx.png)
 ![Search](https://i.imgur.com/iDALrNu.png)
 
+## Video Demo
+
+[![demo](https://img.youtube.com/vi/E1rv0ZqCx74/maxresdefault.jpg)](https://www.youtube.com/watch?v=E1rv0ZqCx74)
+
 ## Wireframes
 
 ![figma](https://i.imgur.com/IeV4RtS.png)
