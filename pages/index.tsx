@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
 import { Signup } from '../components/Signup.components';
+import { Login } from '../components/Login.components';
 
 const Home = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -15,7 +16,7 @@ const Home = () => {
     <>
       {hydrated ? (
         <>
-          <Signup />
+          <Login />
         </>
       ) : null}
     </>

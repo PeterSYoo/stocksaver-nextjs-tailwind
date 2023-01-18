@@ -24,7 +24,7 @@ const Guest = () => {
             </Link>
             <div className="flex items-center gap-10 md:gap-20">
               <ThemeButton />
-              <Link href="/login">
+              <Link href="/">
                 <button className="text-lg md:text-xl font-bold flex justify-center">
                   login
                 </button>

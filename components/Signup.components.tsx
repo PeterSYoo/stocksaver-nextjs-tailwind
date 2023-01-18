@@ -343,7 +343,7 @@ export const Signup = () => {
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
                     Already have an account?&nbsp;
                     <Link
-                      href="/login"
+                      href="/"
                       className="text-black hover:text-gray-300 dark:text-white dark:hover:text-gray-800"
                     >
                       Login here

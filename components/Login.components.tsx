@@ -13,6 +13,7 @@ import { LoginPasswordErrorModal } from './LoginPasswordErrorModal.components';
 import { BiUser } from 'react-icons/bi';
 import { HiFingerPrint } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import useHandleSignin from '../hooks/useHandleSignin';
 
 type SignInResponse = {
   error?: string;
@@ -52,27 +53,22 @@ export const Login = () => {
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const router = useRouter();
 
-  const handleSubmit = async () => {
-    const status: SignInResponse | undefined = await signIn('credentials', {
-      redirect: false,
-      username: formik.values.username,
-      password: formik.values.password,
-      callbackUrl: '/dashboard',
-    });
+  const { mutateHandleSignin, isLoadingHandleSignin } = useHandleSignin(
+    signIn,
+    setIsUsernameErrorModalOpen,
+    setIsPasswordErrorModalOpen,
+    router
+  );
 
-    if (status?.error! === 'No user found with that Username!') {
-      setIsUsernameErrorModalOpen(true);
-    } else {
-      setIsPasswordErrorModalOpen(true);
-    }
-
-    if (status && status?.ok) router.push(status?.url!);
+  const onSubmit = async (data: any) => {
+    await mutateHandleSignin(data);
   };
 
-  const { mutateAsync, isLoading } = useMutation(handleSubmit);
-
-  const onSubmit = async () => {
-    await mutateAsync();
+  const onGuestLogin = async () => {
+    await mutateHandleSignin({
+      username: 'Guest',
+      password: 'Abcd1234!',
+    });
   };
 
   const formik = useFormik({
@@ -109,6 +105,12 @@ export const Login = () => {
                   Login
                 </h1>
                 <div className="px-10">
+                  <span
+                    onClick={onGuestLogin}
+                    className="border border-gray-500 w-full mt-10 text-gray-900 font-bold text-lg py-2 rounded-3xl flex justify-center cursor-pointer hover:bg-black hover:text-white dark:border-gray-500 dark:text-gray-200 dark:hover:bg-white dark:hover:text-black"
+                  >
+                    Sign in as Guest
+                  </span>
                   <label>
                     <h3
                       className={
@@ -216,20 +218,20 @@ export const Login = () => {
                   ) : (
                     <button
                       type="submit"
-                      disabled={isLoading ? true : false}
+                      disabled={isLoadingHandleSignin ? true : false}
                       className={
-                        isLoading
+                        isLoadingHandleSignin
                           ? 'bg-white dark:bg-dark w-full mt-10 text-gray-200 dark:text-gray-500 font-bold text-xl py-2 rounded-3xl flex justify-center cursor-default'
                           : 'bg-blue-600 w-full mt-10 text-white font-bold text-xl py-2 rounded-3xl dark:hover:bg-white dark:hover:text-[#0f1117] hover:bg-black'
                       }
                     >
-                      {isLoading ? <LoaderSpinner2 /> : <>Login</>}
+                      {isLoadingHandleSignin ? <LoaderSpinner2 /> : <>Login</>}
                     </button>
                   )}
                   <p className="text-xs text-center mt-3 dark:text-gray-500 text-gray-500">
                     Don&#39;t have an account?{' '}
                     <Link
-                      href="/"
+                      href="/register"
                       className="text-black hover:text-gray-300 dark:text-white dark:hover:text-gray-800"
                     >
                       Register here
