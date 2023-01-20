@@ -105,12 +105,19 @@ export const Login = () => {
                   Login
                 </h1>
                 <div className="px-10">
-                  <span
-                    onClick={onGuestLogin}
-                    className="border border-gray-500 w-full mt-10 text-gray-900 font-bold text-lg py-2 rounded-3xl flex justify-center cursor-pointer hover:bg-black hover:text-white dark:border-gray-500 dark:text-gray-200 dark:hover:bg-white dark:hover:text-black"
-                  >
-                    Sign in as Guest
-                  </span>
+                  {isLoadingHandleSignin ? (
+                    <span className="border border-gray-500 w-full mt-10 text-gray-900 font-bold text-lg py-2 rounded-3xl flex justify-center cursor-default  dark:border-gray-500 dark:text-gray-200 dark:hover:bg-white dark:hover:text-black">
+                      Sign in as Guest
+                    </span>
+                  ) : (
+                    <span
+                      onClick={onGuestLogin}
+                      className="border border-gray-500 w-full mt-10 text-gray-900 font-bold text-lg py-2 rounded-3xl flex justify-center cursor-pointer hover:bg-black hover:text-white dark:border-gray-500 dark:text-gray-200 dark:hover:bg-white dark:hover:text-black"
+                    >
+                      Sign in as Guest
+                    </span>
+                  )}
+
                   <label>
                     <h3
                       className={
