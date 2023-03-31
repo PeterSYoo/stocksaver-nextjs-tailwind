@@ -12,6 +12,7 @@ const playfair = Playfair_Display({
 });
 
 const Guest = () => {
+  // States ------------------------------------------------------------- ***
   return (
     <>
       <header className={`${playfair.variable} font-serif`}>
@@ -38,13 +39,16 @@ const Guest = () => {
 };
 
 const LoggedIn = () => {
+  // States ------------------------------------------------------------- ***
   const router = useRouter();
 
+  // Custom Functions ---------------------------------------------------- ***
   const handleSignout = async () => {
     await signOut();
     router.push('/');
   };
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <header className={`${playfair.variable} font-serif`}>
@@ -72,8 +76,10 @@ const LoggedIn = () => {
 };
 
 export const Header = () => {
+  // States ------------------------------------------------------------- ***
   const { status }: { status: string } = useSession();
 
+  // JSX ------------------------------------------------------------------ ***
   if (status === 'loading') {
     return (
       <div className="pl-4">

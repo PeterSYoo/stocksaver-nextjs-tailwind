@@ -36,11 +36,16 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const Signup = () => {
+  // States ------------------------------------------------------------- ***
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isUsernameErrorModalOpen, setIsUsernameErrorModalOpen] =
     useState<boolean>();
   const [isEmailErrorModalOpen, setIsEmailErrorModalOpen] = useState<boolean>();
+  const { systemTheme, theme } = useTheme();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const router = useRouter();
 
+  // Custom Functions ---------------------------------------------------- ***
   const closeUsernameErrorModal = () => {
     setIsUsernameErrorModalOpen(false);
   };
@@ -48,10 +53,6 @@ export const Signup = () => {
   const closeEmailErrorModal = () => {
     setIsEmailErrorModalOpen(false);
   };
-
-  const { systemTheme, theme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-  const router = useRouter();
 
   const handleSubmit = async () => {
     const options = {
@@ -78,8 +79,10 @@ export const Signup = () => {
     );
   };
 
+  // States ------------------------------------------------------------- ***
   const { mutateAsync, isLoading } = useMutation(handleSubmit);
 
+  // Custom Functions ---------------------------------------------------- ***
   const onSubmit = async () => {
     await mutateAsync();
   };
@@ -95,6 +98,7 @@ export const Signup = () => {
     onSubmit,
   });
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       {isUsernameErrorModalOpen || isEmailErrorModalOpen ? (

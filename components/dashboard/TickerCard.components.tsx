@@ -61,12 +61,16 @@ export const TickerCard = ({
   setWinner,
   setLoser,
 }: TickerCardProps) => {
+  // States ------------------------------------------------------------- ***
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<any>({});
   const [price, setPrice] = useState<any>({});
   const [key, setKey] = useState('');
   const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(true);
 
+  const { mutateAsync, isLoading } = useMutation(deleteTicker);
+
+  // Custom Functions ---------------------------------------------------- ***
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -127,8 +131,7 @@ export const TickerCard = ({
     setLoser({});
   };
 
-  const { mutateAsync, isLoading } = useMutation(deleteTicker);
-
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     const getData = async (ticker: string) => {
       try {
@@ -167,6 +170,7 @@ export const TickerCard = ({
     }
   }, [buttonIsDisabled]);
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       {company.name ? (

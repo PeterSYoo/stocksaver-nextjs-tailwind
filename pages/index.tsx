@@ -6,12 +6,15 @@ import { Signup } from '../components/Signup.components';
 import { Login } from '../components/Login.components';
 
 const Home = () => {
+  // States ------------------------------------------------------------- ***
   const [hydrated, setHydrated] = useState(false);
 
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     setHydrated(true);
   }, []);
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       {hydrated ? (

@@ -53,7 +53,7 @@ export const TickerCards = ({
   setWinner,
   setLoser,
 }: TickerCardsProps) => {
-  console.log(localTickers);
+  // JSX ------------------------------------------------------------------ ***
   if (tickers) {
     return (
       <>

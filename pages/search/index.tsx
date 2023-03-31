@@ -5,6 +5,7 @@ import { authOptions } from '../api/auth/[...nextauth]';
 import { SearchInput } from '../../components/search/SearchInput.components';
 
 const SearchPage = () => {
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <div className="mx-4 md:mx-10">

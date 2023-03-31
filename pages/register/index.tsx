@@ -5,6 +5,7 @@ import { Login } from '../../components/Login.components';
 import { Signup } from '../../components/Signup.components';
 
 const RegisterPage = () => {
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <Signup />

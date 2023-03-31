@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 export const AddTickerCard = () => {
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <Link href="/search">

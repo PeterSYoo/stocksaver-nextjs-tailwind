@@ -23,8 +23,10 @@ const openSans = Open_Sans({
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
+  // States ------------------------------------------------------------- ***
   const [loading, setLoading] = useState(false);
 
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     const start = () => {
       setLoading(true);
@@ -45,6 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, []);
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <Head>

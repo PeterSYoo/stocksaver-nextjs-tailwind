@@ -61,12 +61,13 @@ const playfair = Playfair_Display({
 });
 
 export const Profile = ({ user, winner, loser, tickers }: ProfileProps) => {
-  console.log(tickers);
+  // States ------------------------------------------------------------- ***
   const [imageSrc, setImageSrc] = useState<any>();
   const [uploadData, setUploadData] = useState<any>();
   const [tempUser, setTempUser] = useState<any>();
   const inputFileRef = useRef<any>(null);
 
+  // Custom Functions ---------------------------------------------------- ***
   const handleInputFileClick = () => {
     inputFileRef.current.click();
   };
@@ -94,6 +95,7 @@ export const Profile = ({ user, winner, loser, tickers }: ProfileProps) => {
     }
   };
 
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     if (user !== undefined) {
       setTempUser(user);
@@ -114,6 +116,7 @@ export const Profile = ({ user, winner, loser, tickers }: ProfileProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadData]);
 
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       {user ? (

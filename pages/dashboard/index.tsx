@@ -72,6 +72,7 @@ type UserTickersResponse = {
 };
 
 const DashboardPage = ({ session }: DashboardPageProps) => {
+  // States ------------------------------------------------------------- ***
   const [apiKey] = useState(process.env.NEXT_PUBLIC_API_KEY);
   const [company, setCompany] = useState<Company[]>([]);
   const [winner, setWinner] = useState<any>();
@@ -91,8 +92,7 @@ const DashboardPage = ({ session }: DashboardPageProps) => {
     getUserTickers(session.user.id)
   );
 
-  console.log(userTickers);
-
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     setLocalTickers(userTickers);
   }, [userTickers]);
@@ -166,6 +166,7 @@ const DashboardPage = ({ session }: DashboardPageProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [company]);
 
+  // JSX ------------------------------------------------------------------ ***
   if (isLoading) return <LoaderSpinner />;
   if (isError) return <h1>{error.message}</h1>;
 

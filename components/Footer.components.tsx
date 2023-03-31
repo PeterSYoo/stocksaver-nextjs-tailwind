@@ -1,4 +1,5 @@
 export const Footer = () => {
+  // JSX ------------------------------------------------------------------ ***
   return (
     <>
       <footer className="flex justify-center w-full my-20">

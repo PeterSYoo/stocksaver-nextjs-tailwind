@@ -45,7 +45,7 @@ type WinnersCardProps = {
 };
 
 export const WinnersCard = ({ winner }: WinnersCardProps) => {
-  console.log(winner);
+  // Custom Functions ---------------------------------------------------- ***
   const perIncrease = (a: number, b: number) => {
     let percent;
     if (b !== 0) {
@@ -98,6 +98,7 @@ export const WinnersCard = ({ winner }: WinnersCardProps) => {
     }
   };
 
+  // JSX ------------------------------------------------------------------ ***
   const checkIfWinner = (price: Price) => {
     let pos;
     let neg;

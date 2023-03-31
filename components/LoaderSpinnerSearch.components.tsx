@@ -3,14 +3,17 @@ import { useTheme } from 'next-themes';
 import { MoonLoader } from 'react-spinners';
 
 export const LoaderSpinnerSearch = () => {
+  // States ------------------------------------------------------------- ***
   const { systemTheme, theme } = useTheme();
   const [hydrated, setHydrated] = useState(false);
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
+  // Effects ------------------------------------------------------------- ***
   useEffect(() => {
     setHydrated(true);
   }, []);
 
+  // JSX ------------------------------------------------------------------ ***
   if (!hydrated) return null;
 
   if (currentTheme === 'dark') {
